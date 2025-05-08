@@ -1,0 +1,185 @@
+﻿<Window x:Class="WpfApp1.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Login" Height="600" Width="1000"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource AppBackground}">
+
+    <Window.Resources>
+        <!-- 1) Full-window gradient -->
+        <LinearGradientBrush x:Key="BackgroundGradient"
+                         StartPoint="0,0" EndPoint="1,1">
+            <LinearGradientBrush.RelativeTransform>
+                <RotateTransform Angle="45" CenterX="0.5" CenterY="0.5"/>
+            </LinearGradientBrush.RelativeTransform>
+            <GradientStop Color="#FFFFFFFF" Offset="0.0"/>
+            <GradientStop Color="#E3F2FD"   Offset="0.3"/>
+            <GradientStop Color="#64B5F6"   Offset="0.7"/>
+            <GradientStop Color="#FF2196F3" Offset="1.0"/>
+        </LinearGradientBrush>
+
+        <!-- 2) Soft radial glow -->
+        <RadialGradientBrush x:Key="AccentRadial"
+                         GradientOrigin="0.5,0.5" Center="0.5,0.5"
+                         RadiusX="0.5" RadiusY="0.5">
+            <GradientStop Color="#2196F3" Offset="0"/>
+            <GradientStop Color="#00FFFFFF" Offset="1"/>
+        </RadialGradientBrush>
+
+        <!-- 3) Hover gradient for buttons -->
+        <LinearGradientBrush x:Key="LoginHoverBrush" StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="#42A5F5" Offset="0.0"/>
+            <GradientStop Color="#1E88E5" Offset="1.0"/>
+        </LinearGradientBrush>
+
+        <!-- 4) Base rounded-corner button template -->
+        <Style x:Key="RoundedButton" TargetType="Button">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                    CornerRadius="20"
+                    SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- 5) Pill-shaped full-width action buttons -->
+        <Style x:Key="LoginButtonStyle" TargetType="Button"
+           BasedOn="{StaticResource RoundedButton}">
+            <Setter Property="Background" Value="#FFEEEEEE"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Margin" Value="0,15,0,0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource LoginHoverBrush}"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- background layers -->
+        <Rectangle Fill="{StaticResource BackgroundGradient}"/>
+        <Ellipse Fill="{StaticResource AccentRadial}"
+             Width="800" Height="800"
+             Opacity="0.25"
+             HorizontalAlignment="Right"
+             VerticalAlignment="Top"
+             Margin="0,-300,-200,0"/>
+        <Ellipse Fill="{StaticResource AccentRadial}"
+             Width="900" Height="900"
+             Opacity="0.18"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Bottom"
+             Margin="-300,0,0,-300"/>
+
+        <!-- login card -->
+        <Border Width="400" Background="White"
+            CornerRadius="10" Padding="30"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <Border.Effect>
+                <DropShadowEffect Color="Black"
+                          BlurRadius="12"
+                          ShadowDepth="0"
+                          Opacity="0.2"/>
+            </Border.Effect>
+
+            <StackPanel>
+                <TextBlock Text="Login"
+                   FontSize="28"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20"/>
+
+                <!-- Username -->
+                <StackPanel Margin="0,0,0,15">
+                    <TextBlock Text="Username"
+                     FontWeight="SemiBold"
+                     Margin="0,0,0,5"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"
+                       Text="👤"
+                       FontSize="16"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+                        <TextBox x:Name="UsernameTextBox"
+                     Grid.Column="1"
+                     Height="30"
+                     Background="Transparent"
+                     BorderBrush="LightGray"
+                     BorderThickness="0,0,0,1"
+                     VerticalContentAlignment="Center"
+                     Padding="5"
+                     Foreground="#333333"
+                     Text="Type your username"
+                     GotFocus="RemoveText"/>
+                    </Grid>
+                </StackPanel>
+
+                <!-- Password -->
+                <StackPanel Margin="0,0,0,5">
+                    <TextBlock Text="Password"
+                     FontWeight="SemiBold"
+                     Margin="0,0,0,5"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"
+                       Text="🔒"
+                       FontSize="16"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+                        <PasswordBox x:Name="PasswordBox"
+                         Grid.Column="1"
+                         Height="30"
+                         Background="Transparent"
+                         BorderBrush="LightGray"
+                         BorderThickness="0,0,0,1"
+                         VerticalContentAlignment="Center"
+                         Padding="5"/>
+                    </Grid>
+                </StackPanel>
+
+                <!-- Inline error -->
+                <TextBlock x:Name="ErrorTextBlock"
+                   Text=""
+                   Foreground="Red"
+                   FontWeight="SemiBold"
+                   Margin="0,5,0,0"
+                   Visibility="Collapsed"
+                   TextAlignment="Center"/>
+
+                <!-- LOGIN -->
+                <Button x:Name="LoginButton"
+                Content="LOGIN"
+                Style="{StaticResource LoginButtonStyle}"
+                Click="LoginButton_Click"/>
+
+                <!-- REGISTER -->
+                <Button x:Name="RegisterButton"
+                Content="REGISTER"
+                Style="{StaticResource LoginButtonStyle}"
+                Click="RegisterButton_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
+    

@@ -1,0 +1,96 @@
+﻿<Application x:Class="WpfApp1.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="LoginWindow.xaml">
+    <Application.Resources>
+        <!-- Full‐window gradient background -->
+        <LinearGradientBrush x:Key="AppBackground"
+                         StartPoint="0,0" EndPoint="1,1">
+            <LinearGradientBrush.RelativeTransform>
+                <RotateTransform Angle="45" CenterX="0.5" CenterY="0.5"/>
+            </LinearGradientBrush.RelativeTransform>
+            <GradientStop Color="#FFFFFFFF" Offset="0"/>
+            <GradientStop Color="#E3F2FD"   Offset="0.3"/>
+            <GradientStop Color="#64B5F6"   Offset="0.7"/>
+            <GradientStop Color="#FF2196F3" Offset="1"/>
+        </LinearGradientBrush>
+
+        <!-- Sidebar background -->
+        <SolidColorBrush x:Key="SidebarBackground" Color="#2C3E50"/>
+
+        <!-- Accent (e.g. Add‐button green) -->
+        <SolidColorBrush x:Key="AccentBrush" Color="#2ECC71"/>
+
+        <!-- Sidebar text color -->
+        <SolidColorBrush x:Key="SidebarText" Color="White"/>
+
+        <!-- Button hover gradient -->
+        <LinearGradientBrush x:Key="LoginHoverBrush"
+                         StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="#42A5F5" Offset="0"/>
+            <GradientStop Color="#1E88E5" Offset="1"/>
+        </LinearGradientBrush>
+
+        <!-- Base rounded‐corner button -->
+        <Style x:Key="RoundedButton" TargetType="Button">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                    CornerRadius="20"
+                    SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Pill‐shaped full‐width buttons -->
+        <Style x:Key="LoginButtonStyle" TargetType="Button"
+           BasedOn="{StaticResource RoundedButton}">
+            <Setter Property="Background" Value="#FFEEEEEE"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Margin" Value="0,15,0,0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource LoginHoverBrush}"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Navigation‐button style for sidebar -->
+        <Style x:Key="NavButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource SidebarText}"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Left"
+                                VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#34495E"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Application.Resources>
+</Application>
