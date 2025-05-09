@@ -5,8 +5,6 @@
         WindowStartupLocation="CenterScreen"
         Background="{StaticResource AppBackground}">
 
-    
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220"/>
@@ -17,96 +15,58 @@
 
         <!-- LEFT NAV -->
         <Border Grid.Column="0"
-            Background="#2C3E50">
-            <StackPanel>
+            Background="{StaticResource SidebarBackground}">
+            <StackPanel Margin="0,20">
+
                 <TextBlock Text="PHARMACY"
-                   Foreground="White"
+                   Foreground="{StaticResource SidebarText}"
                    FontSize="20"
                    FontWeight="Bold"
                    Margin="10"
                    HorizontalAlignment="Center"/>
 
-                <Button Style="{StaticResource RoundedButton}"
-                Background="Transparent"
-                Foreground="White"
-                HorizontalContentAlignment="Left"
-                Padding="10"
-                Margin="0,10,0,0">
-                    <TextBlock Text="🏠  Dashboard"/>
-                </Button>
-                <Button Style="{StaticResource RoundedButton}"
-                Background="Transparent"
-                Foreground="White"
-                HorizontalContentAlignment="Left"
-                Padding="10">
-                    <TextBlock Text="🛒  POS"/>
-                </Button>
-
-                <!-- Medicine section -->
-                <Expander Header="💊  Medicine"
-                  Foreground="White"
-                  Background="Transparent"
-                  Padding="10"
-                  IsExpanded="True">
-                    <StackPanel>
-                        <Button Style="{StaticResource RoundedButton}"
-                    Background="Transparent"
-                    Foreground="White"
-                    HorizontalContentAlignment="Left"
-                    Padding="8,4"
-                    Click="MedicineList_Click">
-                            <TextBlock Text="  Medicine List"/>
-                        </Button>
-                        <Button Style="{StaticResource RoundedButton}"
-                    Background="Transparent"
-                    Foreground="White"
-                    HorizontalContentAlignment="Left"
-                    Padding="8,4"
-                    Click="AddMedicine_Click">
-                            <TextBlock Text="  Add Medicine"/>
-                        </Button>
-                        <Button Style="{StaticResource RoundedButton}"
-                    Background="Transparent"
-                    Foreground="White"
-                    HorizontalContentAlignment="Left"
-                    Padding="8,4"
-                    Click="Categories_Click">
-                            <TextBlock Text="  Categories"/>
-                        </Button>
+                <Button Style="{StaticResource NavButtonStyle}"
+                Click="MedicineList_Click" Margin="0,5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="💊" FontSize="16"/>
+                        <TextBlock Text=" Medicine List" Margin="8,0,0,0"/>
                     </StackPanel>
-                </Expander>
+                </Button>
 
-                <!-- etc… other nav items -->
+                <Button Style="{StaticResource NavButtonStyle}"
+                Click="AddMedicine_Click" Margin="0,5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="➕" FontSize="16"/>
+                        <TextBlock Text=" Add Medicine" Margin="8,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Style="{StaticResource NavButtonStyle}"
+                Click="Categories_Click" Margin="0,5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📂" FontSize="16"/>
+                        <TextBlock Text=" Categories" Margin="8,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
             </StackPanel>
         </Border>
 
         <!-- MAIN CONTENT -->
         <Grid Grid.Column="1" Margin="20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <!-- header -->
-                <RowDefinition Height="*"/>
-                <!-- table -->
-            </Grid.RowDefinitions>
-
-            <!-- HEADER BAR -->
-            <DockPanel LastChildFill="False" Margin="0,0,0,10">
-                <TextBlock Text="MEDICINE"
+            <DockPanel LastChildFill="True" Margin="0,0,0,10">
+                <TextBlock Text="MEDICINE LIST"
                    FontSize="24"
                    FontWeight="Bold"
                    DockPanel.Dock="Left"/>
-
                 <Button Content="Add Medicine"
                 Style="{StaticResource LoginButtonStyle}"
                 Width="150"
-                HorizontalAlignment="Right"
                 Click="AddMedicine_Click"
                 DockPanel.Dock="Right"/>
             </DockPanel>
 
-            <!-- DATA GRID -->
             <DataGrid x:Name="MedicineGrid"
-                Grid.Row="1"
                 AutoGenerateColumns="False"
                 CanUserAddRows="False"
                 HeadersVisibility="Column"
@@ -114,54 +74,31 @@
                 FontSize="14"
                 IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name"
-                              Binding="{Binding DisplayName}"
-                              Width="2*"/>
-                    <DataGridTextColumn Header="Type"
-                              Binding="{Binding MedicineType}"
-                              Width="*"/>
-                    <DataGridTextColumn Header="Box Price"
-                              Binding="{Binding PricePerBox, StringFormat=C}"
-                              Width="*"/>
-                    <DataGridTextColumn Header="Strip Price"
-                              Binding="{Binding PricePerStrip, StringFormat=C}"
-                              Width="*"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding DisplayName}" Width="2*"/>
+                    <DataGridTextColumn Header="Type" Binding="{Binding MedicineType}" Width="*"/>
+                    <DataGridTextColumn Header="Box Price" Binding="{Binding PricePerBox, StringFormat=C}" Width="*"/>
+                    <DataGridTextColumn Header="Strip Price" Binding="{Binding PricePerStrip, StringFormat=C}" Width="*"/>
                     <DataGridTemplateColumn Header="Quantity" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding Quantity}" VerticalAlignment="Center"/>
-                                    <Button Content="Load"
-                          Margin="5,0,0,0"
-                          Padding="5,2"
+                                    <Button Content="Load" Margin="5,0,0,0" Padding="5,2"
                           Click="LoadStock_Click"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Generic"
-                              Binding="{Binding ActiveIngredient}"
-                              Width="*"/>
-                    <DataGridTextColumn Header="Company"
-                              Binding="{Binding Company}"
-                              Width="*"/>
-                    <DataGridTextColumn Header="Expires"
-                              Binding="{Binding ExpiryDate, StringFormat=d}"
-                              Width="*"/>
+                    <DataGridTextColumn Header="Generic" Binding="{Binding ActiveIngredient}" Width="*"/>
+                    <DataGridTextColumn Header="Company" Binding="{Binding Company}" Width="*"/>
+                    <DataGridTextColumn Header="Expires" Binding="{Binding ExpiryDate, StringFormat=d}" Width="*"/>
                     <DataGridTemplateColumn Header="Options" Width="150">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Content="Edit"
-                          Padding="5,2"
-                          Background="#2ECC71"
-                          Foreground="White"
-                          Margin="0,0,5,0"
-                          Click="EditMedicine_Click"/>
-                                    <Button Content="Delete"
-                          Padding="5,2"
-                          Background="#E74C3C"
-                          Foreground="White"
+                                    <Button Content="Edit" Padding="5,2" Background="#2ECC71" Foreground="White"
+                          Margin="0,0,5,0" Click="EditMedicine_Click"/>
+                                    <Button Content="Delete" Padding="5,2" Background="#E74C3C" Foreground="White"
                           Click="DeleteMedicine_Click"/>
                                 </StackPanel>
                             </DataTemplate>
