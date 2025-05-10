@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="LoginWindow.xaml">
     <Application.Resources>
-        <!-- Full‐window gradient background -->
+        <!-- full‐window gradient -->
         <LinearGradientBrush x:Key="AppBackground"
                          StartPoint="0,0" EndPoint="1,1">
             <LinearGradientBrush.RelativeTransform>
@@ -15,23 +15,16 @@
             <GradientStop Color="#FF2196F3" Offset="1"/>
         </LinearGradientBrush>
 
-        <!-- Sidebar background -->
+        <!-- sidebar & accent colors -->
         <SolidColorBrush x:Key="SidebarBackground" Color="#2C3E50"/>
+        <SolidColorBrush x:Key="SidebarText"       Color="White"/>
+        <SolidColorBrush x:Key="AccentBrush"       Color="#27AE60"/>
 
-        <!-- Accent (e.g. Add‐button green) -->
-        <SolidColorBrush x:Key="AccentBrush" Color="#2ECC71"/>
-
-        <!-- Sidebar text color -->
-        <SolidColorBrush x:Key="SidebarText" Color="White"/>
-
-        <!-- Button hover gradient -->
-        <LinearGradientBrush x:Key="LoginHoverBrush"
-                         StartPoint="0,0" EndPoint="1,0">
+        <!-- pill buttons (LOGIN/REGISTER) -->
+        <LinearGradientBrush x:Key="LoginHoverBrush" StartPoint="0,0" EndPoint="1,0">
             <GradientStop Color="#42A5F5" Offset="0"/>
             <GradientStop Color="#1E88E5" Offset="1"/>
         </LinearGradientBrush>
-
-        <!-- Base rounded‐corner button -->
         <Style x:Key="RoundedButton" TargetType="Button">
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="0"/>
@@ -48,8 +41,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <!-- Pill‐shaped full‐width buttons -->
         <Style x:Key="LoginButtonStyle" TargetType="Button"
            BasedOn="{StaticResource RoundedButton}">
             <Setter Property="Background" Value="#FFEEEEEE"/>
@@ -66,7 +57,7 @@
             </Style.Triggers>
         </Style>
 
-        <!-- Navigation‐button style for sidebar -->
+        <!-- sidebar nav‐button with left indicator -->
         <Style x:Key="NavButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="{StaticResource SidebarText}"/>
@@ -77,20 +68,35 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter HorizontalAlignment="Left"
-                                VerticalAlignment="Center"/>
-                        </Border>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <!-- left indicator -->
+                            <Rectangle x:Name="Indicator" Grid.Column="0" Fill="Transparent"/>
+                            <!-- content area -->
+                            <Border Grid.Column="1"
+                      Background="{TemplateBinding Background}"
+                      Padding="{TemplateBinding Padding}">
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Indicator" Property="Fill" Value="{StaticResource AccentBrush}"/>
+                            </Trigger>
+                            <Trigger Property="Tag" Value="Selected">
+                                <Setter TargetName="Indicator" Property="Fill" Value="{StaticResource AccentBrush}"/>
+                                <Setter Property="Background" Value="{StaticResource LoginHoverBrush}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#34495E"/>
-                </Trigger>
-            </Style.Triggers>
         </Style>
+
     </Application.Resources>
 </Application>
