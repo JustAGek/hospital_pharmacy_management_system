@@ -1,0 +1,17 @@
+C:\Users\ahmed\Desktop\pharmacy system\hospital_management_pharmacy_system\WpfApp1\obj\Debug\net8.0-windows\DashboardWindow.baml
+C:\Users\ahmed\Desktop\pharmacy system\hospital_management_pharmacy_system\WpfApp1\obj\Debug\net8.0-windows\LoginWindow.baml
+C:\Users\ahmed\Desktop\pharmacy system\hospital_management_pharmacy_system\WpfApp1\obj\Debug\net8.0-windows\MedicinePage.baml
+C:\Users\ahmed\Desktop\pharmacy system\hospital_management_pharmacy_system\WpfApp1\obj\Debug\net8.0-windows\MedicineWindow.baml
+C:\Users\ahmed\Desktop\pharmacy system\hospital_management_pharmacy_system\WpfApp1\obj\Debug\net8.0-windows\PatientsWindow.baml
+C:\Users\ahmed\Desktop\pharmacy system\hospital_management_pharmacy_system\WpfApp1\obj\Debug\net8.0-windows\RegisterationWindow.baml
+C:\Users\ahmed\Desktop\pharmacy system\hospital_management_pharmacy_system\WpfApp1\obj\Debug\net8.0-windows\DashboardWindow.g.cs
+C:\Users\ahmed\Desktop\pharmacy system\hospital_management_pharmacy_system\WpfApp1\obj\Debug\net8.0-windows\LoginWindow.g.cs
+C:\Users\ahmed\Desktop\pharmacy system\hospital_management_pharmacy_system\WpfApp1\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\ahmed\Desktop\pharmacy system\hospital_management_pharmacy_system\WpfApp1\obj\Debug\net8.0-windows\MedicinePage.g.cs
+C:\Users\ahmed\Desktop\pharmacy system\hospital_management_pharmacy_system\WpfApp1\obj\Debug\net8.0-windows\MedicineWindow.g.cs
+C:\Users\ahmed\Desktop\pharmacy system\hospital_management_pharmacy_system\WpfApp1\obj\Debug\net8.0-windows\PatientsWindow.g.cs
+C:\Users\ahmed\Desktop\pharmacy system\hospital_management_pharmacy_system\WpfApp1\obj\Debug\net8.0-windows\RegisterationWindow.g.cs
+C:\Users\ahmed\Desktop\pharmacy system\hospital_management_pharmacy_system\WpfApp1\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\ahmed\Desktop\pharmacy system\hospital_management_pharmacy_system\WpfApp1\obj\Debug\net8.0-windows\WpfApp1_MarkupCompile.cache
+C:\Users\ahmed\Desktop\pharmacy system\hospital_management_pharmacy_system\WpfApp1\obj\Debug\net8.0-windows\WpfApp1_MarkupCompile.lref
+C:\Users\ahmed\Desktop\pharmacy system\hospital_management_pharmacy_system\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.csproj.AssemblyReference.cache
