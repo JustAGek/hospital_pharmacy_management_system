@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JustAGeek\\source\\repos\\WpfApp1\\WpfApp1.csproj": {}
+    "C:\\Users\\JustAGeek\\Desktop\\WpfApp1\\WpfApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JustAGeek\\source\\repos\\WpfApp1\\WpfApp1.csproj": {
+    "C:\\Users\\JustAGeek\\Desktop\\WpfApp1\\WpfApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JustAGeek\\source\\repos\\WpfApp1\\WpfApp1.csproj",
+        "projectUniqueName": "C:\\Users\\JustAGeek\\Desktop\\WpfApp1\\WpfApp1.csproj",
         "projectName": "WpfApp1",
-        "projectPath": "C:\\Users\\JustAGeek\\source\\repos\\WpfApp1\\WpfApp1.csproj",
+        "projectPath": "C:\\Users\\JustAGeek\\Desktop\\WpfApp1\\WpfApp1.csproj",
         "packagesPath": "C:\\Users\\JustAGeek\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JustAGeek\\source\\repos\\WpfApp1\\obj\\",
+        "outputPath": "C:\\Users\\JustAGeek\\Desktop\\WpfApp1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\DevExpress 24.2\\Components\\Offline Packages",
@@ -56,6 +56,10 @@
             "BCrypt.Net-Next": {
               "target": "Package",
               "version": "[4.0.3, )"
+            },
+            "MahApps.Metro": {
+              "target": "Package",
+              "version": "[2.4.10, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",

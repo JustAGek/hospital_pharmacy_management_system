@@ -29,7 +29,7 @@ namespace WpfApp1
             string fullName = FullNameTextBox.Text.Trim();
             string username = UsernameTextBox.Text.Trim();
             string password = PasswordBox.Password;
-            string userType = ((ComboBoxItem)UserTypeComboBox.SelectedItem).Content.ToString();
+            string userType = ((UserTypeComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString()) ?? string.Empty;
 
             if (string.IsNullOrWhiteSpace(fullName) ||
                 string.IsNullOrWhiteSpace(username) ||

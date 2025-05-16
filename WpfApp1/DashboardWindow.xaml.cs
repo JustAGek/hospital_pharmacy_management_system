@@ -36,14 +36,16 @@ namespace WpfApp1
         {
             ClearSelection();
             PatientsBtn.Tag = "Selected";
-            // open PatientsWindow…
+            new PatientWindow().Show();
+            Close();
         }
 
         private void MedicineButton_Click(object sender, RoutedEventArgs e)
         {
             ClearSelection();
             MedicineBtn.Tag = "Selected";
-            // open MedicineWindow…
+            new MedicinePage().Show();
+            Close();
         }
     }
 }

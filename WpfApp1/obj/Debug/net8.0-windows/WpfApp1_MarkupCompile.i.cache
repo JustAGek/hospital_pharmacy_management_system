@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\JustAGeek\source\repos\WpfApp1\obj\Debug\net8.0-windows\
+C:\Users\JustAGeek\Desktop\WpfApp1\obj\Debug\net8.0-windows\
 WpfApp1
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-C:\Users\JustAGeek\source\repos\WpfApp1\App.xaml
-5-49649357
+C:\Users\JustAGeek\Desktop\WpfApp1\App.xaml
+5-414343876
 
-12-477096584
-215-1556664668
-DashboardWindow.xaml;LoginWindow.xaml;MedicineWindow.xaml;PatientsWindow.xaml;RegisterationWindow.xaml;
+13-1823726211
+218-1418409675
+DashboardWindow.xaml;LoginWindow.xaml;MedicinePage.xaml;PatientWindow.xaml;RegistrationWindow.xaml;
 
 False
 

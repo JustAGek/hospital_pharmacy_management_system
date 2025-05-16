@@ -7,16 +7,13 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="RegisterationWindow.xaml.cs">
+    <Compile Update="RegistrationWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="DashboardWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="PatientsWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MedicineWindow.xaml.cs">
+    <Compile Update="PatientWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -24,16 +21,13 @@
     <Page Update="LoginWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="RegisterationWindow.xaml">
+    <Page Update="RegistrationWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="DashboardWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="PatientsWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="MedicineWindow.xaml">
+    <Page Update="PatientWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
