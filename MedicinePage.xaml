@@ -1,31 +1,28 @@
-﻿
-    <Window x:Class="WpfApp1.MedicinePage"
+﻿<Window x:Class="WpfApp1.MedicinePage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Medicine Component" Height="700" Width="1200"
         WindowStartupLocation="CenterScreen"
         Background="White">
-<<<<<<< HEAD:MedicinePage.xaml
     <Window.Resources>
         <Style x:Key="RoundedButtonStyle" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
-                            CornerRadius="10"
-                            Padding="{TemplateBinding Padding}">
+                        CornerRadius="10"
+                        Padding="{TemplateBinding Padding}">
                             <ContentPresenter HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"
-                                          Content="{TemplateBinding Content}"/>
+                                      VerticalAlignment="Center"
+                                      Content="{TemplateBinding Content}"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
     </Window.Resources>
-=======
->>>>>>> 4c9cb2f3d5d3e59796d2fdef79ad3bd535f622e4:WpfApp1/MedicinePage.xaml
+
 
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
@@ -34,26 +31,21 @@
         </Grid.ColumnDefinitions>
 
 
-<<<<<<< HEAD:MedicinePage.xaml
         <Button Content="← Back"
-            Style="{StaticResource RoundedButtonStyle}"    
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Margin="10"
-            Padding="10,5"
-            Background="#95A5A6"
-            Foreground="White"
-            FontWeight="Bold"
-            Click="BackToDashboard_Click"
-            Grid.Column="0"/>
+        Style="{StaticResource RoundedButtonStyle}"    
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top"
+        Margin="10"
+        Padding="10,5"
+        Background="#95A5A6"
+        Foreground="White"
+        FontWeight="Bold"
+        Click="BackToDashboard_Click"
+        Grid.Column="0"/>
+
 
         <!-- Product Form -->
         <Border Background="#F4F4F4" CornerRadius="10" Padding="20" Margin="10, 40">
-=======
-
-        <!-- Product Form -->
-        <Border Background="#F4F4F4" CornerRadius="10" Padding="20" Margin="10">
->>>>>>> 4c9cb2f3d5d3e59796d2fdef79ad3bd535f622e4:WpfApp1/MedicinePage.xaml
             <StackPanel>
                 <TextBlock Text="Product Form" FontSize="18" FontWeight="Bold" Margin="0,0,0,20" />
 
@@ -119,13 +111,8 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-<<<<<<< HEAD:MedicinePage.xaml
-                    <Button Content="Save" Margin="5" Padding="10,4" Background="#2980B9" Foreground="White" Click="SaveMedicine_Click" Style="{StaticResource RoundedButtonStyle}"   />
-                    <Button Content="Cancel" Margin="5" Padding="10,4" Background="#BDC3C7" Foreground="Black" Click="CancelMedicine_Click" Style="{StaticResource RoundedButtonStyle}"   />
-=======
-                    <Button Content="Save" Margin="5" Padding="10,4" Background="#2980B9" Foreground="White" Click="SaveMedicine_Click"/>
-                    <Button Content="Cancel" Margin="5" Padding="10,4" Background="#BDC3C7" Foreground="Black" Click="CancelMedicine_Click"/>
->>>>>>> 4c9cb2f3d5d3e59796d2fdef79ad3bd535f622e4:WpfApp1/MedicinePage.xaml
+                    <Button Content="Save" Margin="5" Padding="10,4" Background="#2980B9" Foreground="White" Click="SaveMedicine_Click" Style="{StaticResource RoundedButtonStyle}"/>
+                    <Button Content="Cancel" Margin="5" Padding="10,4" Background="#BDC3C7" Foreground="Black" Click="CancelMedicine_Click" Style="{StaticResource RoundedButtonStyle}"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -163,13 +150,8 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-<<<<<<< HEAD:MedicinePage.xaml
                                         <Button Content="Edit" Padding="5,2" Background="#2980B9" Foreground="White" Margin="5,0" Click="EditMedicine_Click" Style="{StaticResource RoundedButtonStyle}" />
                                         <Button Content="Delete" Padding="5,2" Background="#E74C3C" Foreground="White" Margin="5,0" Click="DeleteMedicine_Click" Style="{StaticResource RoundedButtonStyle}" />
-=======
-                                        <Button Content="Edit" Padding="5,2" Background="#2980B9" Foreground="White" Margin="5,0" Click="EditMedicine_Click"/>
-                                        <Button Content="Delete" Padding="5,2" Background="#E74C3C" Foreground="White" Margin="5,0" Click="DeleteMedicine_Click"/>
->>>>>>> 4c9cb2f3d5d3e59796d2fdef79ad3bd535f622e4:WpfApp1/MedicinePage.xaml
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -180,4 +162,3 @@
         </ScrollViewer>
     </Grid>
 </Window>
-
