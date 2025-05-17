@@ -1,11 +1,13 @@
-## Ignore Visual Studio temporary files
+# Build outputs
+bin/
+obj/
+
+# Visual Studio temporary files
 .vs/
 *.user
 *.suo
 
-## Ignore build outputs
-bin/
-obj/
-
-## Ignore Rider IDE files (optional)
-.idea/
+# Other
+*.cache
+*.pdb
+*.dll
