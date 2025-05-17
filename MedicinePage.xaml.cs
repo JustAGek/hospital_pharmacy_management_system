@@ -10,10 +10,7 @@ namespace WpfApp1
 
     public partial class MedicinePage : Window
     {
-<<<<<<< HEAD:MedicinePage.xaml.cs
 
-=======
->>>>>>> 4c9cb2f3d5d3e59796d2fdef79ad3bd535f622e4:WpfApp1/MedicinePage.xaml.cs
         public ObservableCollection<MedicineViewModel> Medicines { get; } = new ObservableCollection<MedicineViewModel>();
 
         public MedicinePage()
@@ -79,19 +76,11 @@ namespace WpfApp1
             string barcode = "MD" + DateTime.Now.Ticks.ToString().Substring(10); // generate dummy barcode
 
             cmd.CommandText = @"
-<<<<<<< HEAD:MedicinePage.xaml.cs
         INSERT INTO medicines (barcode, name_en, name_ar, active_ingredient, dose,
                                medicine_type, price_per_box, price_per_strip,
                                company, use, origin)
         VALUES (@bc, @en, @ar, 'IngredientX', '10mg', @type, @ppb, NULL, 'CompanyX', @desc, 'Local');
     ";
-=======
-                INSERT INTO medicines (barcode, name_en, name_ar, active_ingredient, dose,
-                                       medicine_type, price_per_box, price_per_strip,
-                                       company, use, origin)
-                VALUES (@bc, @en, @ar, 'IngredientX', '10mg', @type, @ppb, NULL, 'CompanyX', @desc, 'Local');
-            ";
->>>>>>> 4c9cb2f3d5d3e59796d2fdef79ad3bd535f622e4:WpfApp1/MedicinePage.xaml.cs
 
             cmd.Parameters.AddWithValue("@bc", barcode);
             cmd.Parameters.AddWithValue("@en", nameEn);
@@ -119,18 +108,14 @@ namespace WpfApp1
             MessageBox.Show("Cleared.", "Reset", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-<<<<<<< HEAD:MedicinePage.xaml.cs
         private string _editingBarcode = null!;
         private bool isEditing = false;
 
-=======
->>>>>>> 4c9cb2f3d5d3e59796d2fdef79ad3bd535f622e4:WpfApp1/MedicinePage.xaml.cs
         private void EditMedicine_Click(object sender, RoutedEventArgs e)
         {
             if ((sender as FrameworkElement)?.DataContext is not MedicineViewModel vm)
                 return;
 
-<<<<<<< HEAD:MedicinePage.xaml.cs
             // Populate fields with selected medicine data
             MedicineEnglishTextBox.Text = vm.NameEn;
             MedicineArabicTextBox.Text = vm.NameAr;
@@ -142,14 +127,10 @@ namespace WpfApp1
             _editingBarcode = vm.Barcode;
 
             isEditing = true;
-=======
-            MessageBox.Show($"Edit not yet implemented for {vm.Barcode} - {vm.NameEn}", "Edit", MessageBoxButton.OK, MessageBoxImage.Information);
->>>>>>> 4c9cb2f3d5d3e59796d2fdef79ad3bd535f622e4:WpfApp1/MedicinePage.xaml.cs
         }
 
         private void DeleteMedicine_Click(object sender, RoutedEventArgs e)
         {
-<<<<<<< HEAD:MedicinePage.xaml.cs
             try
             {
                 if ((sender as FrameworkElement)?.DataContext is not MedicineViewModel vm)
@@ -183,22 +164,6 @@ namespace WpfApp1
             DashboardWindow dashboard = new DashboardWindow("Ahmed Mohammed EL Sherbeny");
             dashboard.Show();
             this.Close();
-=======
-            if ((sender as FrameworkElement)?.DataContext is not MedicineViewModel vm)
-                return;
-
-            var result = MessageBox.Show($"Are you sure you want to delete {vm.NameEn}?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (result != MessageBoxResult.Yes) return;
-
-            using var conn = DbHelper.GetConnection();
-            using var cmd = conn.CreateCommand();
-            cmd.CommandText = "DELETE FROM medicines WHERE barcode=@bc";
-            cmd.Parameters.AddWithValue("@bc", vm.Barcode);
-            cmd.ExecuteNonQuery();
-
-            MessageBox.Show("Deleted successfully.", "Deleted", MessageBoxButton.OK, MessageBoxImage.Information);
-            LoadMedicines();
->>>>>>> 4c9cb2f3d5d3e59796d2fdef79ad3bd535f622e4:WpfApp1/MedicinePage.xaml.cs
         }
     }
 
