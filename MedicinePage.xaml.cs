@@ -12,11 +12,13 @@ namespace WpfApp1
     {
 
         public ObservableCollection<MedicineViewModel> Medicines { get; } = new ObservableCollection<MedicineViewModel>();
-
+        public ObservableCollection<string> MedicineTypes { get; } = new ObservableCollection<string>();
         public MedicinePage()
         {
             InitializeComponent();
+            this.DataContext = this;
             MedicineListGrid.ItemsSource = Medicines;
+            LoadMedicineTypes();
             LoadMedicines();
         }
 
@@ -52,51 +54,58 @@ namespace WpfApp1
 
         private void SaveMedicine_Click(object sender, RoutedEventArgs e)
         {
-            string nameEn = MedicineEnglishTextBox.Text.Trim();
-            string nameAr = MedicineArabicTextBox.Text.Trim();
-            string description = MedicineDescriptionTextBox.Text.Trim();
-            string priceText = MedicinePriceTextBox.Text.Trim();
-            string type = (MedicineTypeComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
-            bool available = true; // can link to toggle later
-
-            if (string.IsNullOrEmpty(nameEn) || string.IsNullOrEmpty(nameAr) || string.IsNullOrEmpty(type) || string.IsNullOrEmpty(priceText))
+            try
             {
-                MessageBox.Show("Please fill all fields.", "Validation", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+                string nameEn = MedicineEnglishTextBox.Text.Trim();
+                string nameAr = MedicineArabicTextBox.Text.Trim();
+                string description = MedicineDescriptionTextBox.Text.Trim();
+                string priceText = MedicinePriceTextBox.Text.Trim();
+                string type = MedicineTypeComboBox.SelectedItem?.ToString();
+                bool available = true;
 
-            if (!decimal.TryParse(priceText, out var price))
+                if (string.IsNullOrEmpty(nameEn) || string.IsNullOrEmpty(nameAr) || string.IsNullOrEmpty(type) || string.IsNullOrEmpty(priceText))
+                {
+                    MessageBox.Show("Please fill all fields.", "Validation", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (!decimal.TryParse(priceText, out var price))
+                {
+                    MessageBox.Show("Invalid price value.", "Validation", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                using var conn = DbHelper.GetConnection();
+                using var cmd = conn.CreateCommand();
+                string barcode = "MD" + DateTime.Now.Ticks.ToString().Substring(10);
+
+                cmd.CommandText = @"
+            INSERT INTO medicines (barcode, name_en, name_ar, active_ingredient, dose,
+                                   medicine_type, price_per_box, price_per_strip,
+                                   company, use, origin)
+            VALUES (@bc, @en, @ar, 'IngredientX', '10mg', @type, @ppb, NULL, 'CompanyX', @desc, 'Local');
+        ";
+
+                cmd.Parameters.AddWithValue("@bc", barcode);
+                cmd.Parameters.AddWithValue("@en", nameEn);
+                cmd.Parameters.AddWithValue("@ar", nameAr);
+                cmd.Parameters.AddWithValue("@type", type);
+                cmd.Parameters.AddWithValue("@ppb", price);
+                cmd.Parameters.AddWithValue("@desc", description);
+                cmd.ExecuteNonQuery();
+
+                using var pack = conn.CreateCommand();
+                pack.CommandText = "INSERT INTO medicine_packaging (barcode, packaging_type_id) VALUES (@bc, 3)";
+                pack.Parameters.AddWithValue("@bc", barcode);
+                pack.ExecuteNonQuery();
+
+                MessageBox.Show("Medicine saved successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                LoadMedicines();
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Invalid price value.", "Validation", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                MessageBox.Show("An error occurred:\n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            using var conn = DbHelper.GetConnection();
-            using var cmd = conn.CreateCommand();
-            string barcode = "MD" + DateTime.Now.Ticks.ToString().Substring(10); // generate dummy barcode
-
-            cmd.CommandText = @"
-        INSERT INTO medicines (barcode, name_en, name_ar, active_ingredient, dose,
-                               medicine_type, price_per_box, price_per_strip,
-                               company, use, origin)
-        VALUES (@bc, @en, @ar, 'IngredientX', '10mg', @type, @ppb, NULL, 'CompanyX', @desc, 'Local');
-    ";
-
-            cmd.Parameters.AddWithValue("@bc", barcode);
-            cmd.Parameters.AddWithValue("@en", nameEn);
-            cmd.Parameters.AddWithValue("@ar", nameAr);
-            cmd.Parameters.AddWithValue("@type", type);
-            cmd.Parameters.AddWithValue("@ppb", price);
-            cmd.Parameters.AddWithValue("@desc", description);
-            cmd.ExecuteNonQuery();
-
-            using var pack = conn.CreateCommand();
-            pack.CommandText = "INSERT INTO medicine_packaging (barcode, packaging_type_id) VALUES (@bc, 3)"; // 3 = box
-            pack.Parameters.AddWithValue("@bc", barcode);
-            pack.ExecuteNonQuery();
-
-            MessageBox.Show("Medicine saved successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-            LoadMedicines();
         }
 
         private void CancelMedicine_Click(object sender, RoutedEventArgs e)
@@ -165,6 +174,23 @@ namespace WpfApp1
             dashboard.Show();
             this.Close();
         }
+
+        private void LoadMedicineTypes()
+        {
+            MedicineTypes.Clear();
+            using var conn = DbHelper.GetConnection();
+            using var cmd = conn.CreateCommand();
+
+            cmd.CommandText = "SELECT DISTINCT medicine_type FROM medicines WHERE medicine_type IS NOT NULL AND TRIM(medicine_type) <> '' ORDER BY medicine_type ASC";
+
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                string type = reader.GetString(0);
+                MedicineTypes.Add(type);
+            }
+        }
+        
     }
 
 
