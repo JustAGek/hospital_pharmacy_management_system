@@ -1,0 +1,164 @@
+﻿
+    <Window x:Class="WpfApp1.MedicinePage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="Medicine Component" Height="700" Width="1200"
+        WindowStartupLocation="CenterScreen"
+        Background="White">
+    <Window.Resources>
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                            CornerRadius="10"
+                            Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Content="{TemplateBinding Content}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="5*" />
+        </Grid.ColumnDefinitions>
+
+
+        <Button Content="← Back"
+            Style="{StaticResource RoundedButtonStyle}"    
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Margin="10"
+            Padding="10,5"
+            Background="#95A5A6"
+            Foreground="White"
+            FontWeight="Bold"
+            Click="BackToDashboard_Click"
+            Grid.Column="0"/>
+
+        <!-- Product Form -->
+        <Border Background="#F4F4F4" CornerRadius="10" Padding="20" Margin="10, 40">
+            <StackPanel>
+                <TextBlock Text="Product Form" FontSize="18" FontWeight="Bold" Margin="0,0,0,20" />
+
+                <TextBlock Text="Medicine type" Margin="0,0,0,5" />
+                <ComboBox x:Name="MedicineTypeComboBox"
+                 Style="{x:Null}"
+                 Width="270"
+                 Height="28"
+                 Margin="0,5"
+                 FontSize="14"
+                 Foreground="Black"
+                 Background="White"
+                 BorderBrush="Gray"
+                 BorderThickness="1"/>
+
+                <TextBlock Text="Medicine in English" FontWeight="Normal" Margin="0,0,0,2"/>
+                <Border CornerRadius="6" BorderBrush="Gray" BorderThickness="1" Margin="0,5,0,5" Background="White">
+                    <TextBox x:Name="MedicineEnglishTextBox"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Foreground="Black"
+                         Padding="6"
+                         FontSize="14"/>
+                </Border>
+
+
+                <TextBlock Text="Medicine in Arabic" Margin="0,0,0,5" />
+                <Border CornerRadius="6" BorderBrush="Gray" BorderThickness="1" Margin="0,5,0,5" Background="White">
+                    <TextBox x:Name="MedicineArabicTextBox"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     Foreground="Black"
+                     Padding="6"
+                     FontSize="14"/>
+                </Border>
+
+                <TextBlock Text="Description" Margin="0,0,0,5" />
+                <Border CornerRadius="6" BorderBrush="Gray" BorderThickness="1" Margin="0,5,0,5" Background="White">
+                    <TextBox x:Name="MedicineDescriptionTextBox"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     Foreground="Black"
+                     Padding="14"
+                     FontSize="14"/>
+                </Border>
+
+                <TextBlock Text="Price" Margin="0,0,0,5" />
+                <Border CornerRadius="6" BorderBrush="Gray" BorderThickness="1" Margin="0,5,0,5" Background="White">
+                    <TextBox x:Name="MedicinePriceTextBox"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Foreground="Black"
+                         Padding="6"
+                         FontSize="14"/>
+                </Border>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,20">
+                    <Controls:ToggleSwitch Header="Available"
+                       IsOn="True"
+                       Foreground="Black"
+                       Background="White"
+                       Width="100"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="Save" Margin="5" Padding="10,4" Background="#2980B9" Foreground="White" Click="SaveMedicine_Click" Style="{StaticResource RoundedButtonStyle}"   />
+                    <Button Content="Cancel" Margin="5" Padding="10,4" Background="#BDC3C7" Foreground="Black" Click="CancelMedicine_Click" Style="{StaticResource RoundedButtonStyle}"   />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Product List -->
+        <!-- Product List -->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <TextBlock Text="Product List" FontSize="18" FontWeight="Bold" Margin="10" />
+                <DataGrid x:Name="MedicineListGrid"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  IsReadOnly="True"
+                  Margin="10"
+                  HeadersVisibility="Column"
+                  RowHeight="35"
+                  FontSize="14"
+                  HorizontalScrollBarVisibility="Auto">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="#" Binding="{Binding Index}" Width="40"/>
+                        <DataGridTextColumn Header="Category" Binding="{Binding MedicineType}" Width="*"/>
+                        <DataGridTemplateColumn Header="Product Info" Width="2*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding NameEn}" FontWeight="Bold"/>
+                                        <TextBlock Text="Price: {Binding PricePerBox}" />
+                                        <TextBlock Text="Status: {Binding Availability}" />
+                                        <TextBlock Text="Description: {Binding Use}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Action" Width="140">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button Content="Edit" Padding="5,2" Background="#2980B9" Foreground="White" Margin="5,0" Click="EditMedicine_Click" Style="{StaticResource RoundedButtonStyle}" />
+                                        <Button Content="Delete" Padding="5,2" Background="#E74C3C" Foreground="White" Margin="5,0" Click="DeleteMedicine_Click" Style="{StaticResource RoundedButtonStyle}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
+
