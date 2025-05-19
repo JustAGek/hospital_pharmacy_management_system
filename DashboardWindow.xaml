@@ -16,30 +16,29 @@
         <!-- SIDEBAR -->
         <Border Grid.Column="0" Background="{StaticResource SidebarBackground}">
             <StackPanel>
-
                 <!-- user header -->
                 <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    Margin="0,24,0,16">
+                            HorizontalAlignment="Center"
+                            Margin="0,24,0,16">
                     <Ellipse Width="32" Height="32" Fill="{StaticResource AccentBrush}"/>
                     <TextBlock x:Name="UserNameText"
-                     Text="Full Name"
-                     Foreground="{StaticResource SidebarText}"
-                     FontSize="16" FontWeight="SemiBold"
-                     Margin="8,0,0,0"
-                     VerticalAlignment="Center"/>
+                               Text="Full Name"
+                               Foreground="{StaticResource SidebarText}"
+                               FontSize="16" FontWeight="SemiBold"
+                               Margin="8,0,0,0"
+                               VerticalAlignment="Center"/>
                     <TextBlock Text="▼"
-                     Foreground="{StaticResource SidebarText}"
-                     Margin="4,0,0,0"
-                     VerticalAlignment="Center"/>
+                               Foreground="{StaticResource SidebarText}"
+                               Margin="4,0,0,0"
+                               VerticalAlignment="Center"/>
                 </StackPanel>
 
                 <!-- nav items -->
                 <StackPanel>
                     <Button x:Name="DashboardBtn"
-                  Style="{StaticResource NavButtonStyle}"
-                  Tag="Selected"
-                  Click="DashboardButton_Click">
+                            Style="{StaticResource NavButtonStyle}"
+                            Tag="Selected"
+                            Click="DashboardButton_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Text="🏠" FontSize="16"/>
                             <TextBlock Text=" Dashboard" Margin="8,0,0,0"/>
@@ -47,8 +46,8 @@
                     </Button>
 
                     <Button x:Name="ManageUsersBtn"
-                  Style="{StaticResource NavButtonStyle}"
-                  Click="ManageUsersButton_Click">
+                            Style="{StaticResource NavButtonStyle}"
+                            Click="ManageUsersButton_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Text="👥" FontSize="16"/>
                             <TextBlock Text=" Manage Users" Margin="8,0,0,0"/>
@@ -56,8 +55,8 @@
                     </Button>
 
                     <Button x:Name="PatientsBtn"
-                  Style="{StaticResource NavButtonStyle}"
-                  Click="PatientsButton_Click">
+                            Style="{StaticResource NavButtonStyle}"
+                            Click="PatientsButton_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Text="🧑‍⚕️" FontSize="16"/>
                             <TextBlock Text=" Patients" Margin="8,0,0,0"/>
@@ -65,17 +64,39 @@
                     </Button>
 
                     <Button x:Name="MedicineBtn"
-                  Style="{StaticResource NavButtonStyle}"
-                  Click="MedicineButton_Click">
+                            Style="{StaticResource NavButtonStyle}"
+                            Click="MedicineButton_Click">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Text="💊" FontSize="16"/>
                             <TextBlock Text=" Medicine" Margin="8,0,0,0"/>
                         </StackPanel>
                     </Button>
 
-                    <!-- add more nav as needed -->
+                    <Button x:Name="AllergiesBtn"
+                            Style="{StaticResource NavButtonStyle}"
+                            Click="AllergiesButton_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="⚠️" FontSize="16"/>
+                            <TextBlock Text=" Allergies" Margin="8,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="InventoryBtn"
+                            Style="{StaticResource NavButtonStyle}"
+                            Click="InventoryButton_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="📦" FontSize="16"/>
+                            <TextBlock Text=" Inventory" Margin="8,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="SuppliersBtn"
+        Style="{StaticResource NavButtonStyle}"
+        Click="SuppliersButton_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="🏢" FontSize="16"/>
+                            <TextBlock Text=" Suppliers" Margin="8,0,0,0"/>
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
-
             </StackPanel>
         </Border>
 
@@ -94,21 +115,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-
-                        <TextBlock Text="Medicines"
-                       Foreground="White"
-                       FontSize="16" FontWeight="SemiBold"/>
-                        <TextBlock Grid.Row="1" Text="Report"
-                       Foreground="White" Opacity="0.8"
-                       FontSize="12"/>
-
-                        <TextBlock Grid.Column="1" Text="💼"
-                       Foreground="White" FontSize="20"
-                       HorizontalAlignment="Right"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="3"
-                       Foreground="White"
-                       FontSize="24" FontWeight="Bold"
-                       HorizontalAlignment="Right"/>
+                        <TextBlock Text="Medicines" Foreground="White" FontSize="16" FontWeight="SemiBold"/>
+                        <TextBlock Grid.Row="1" Text="Report" Foreground="White" Opacity="0.8" FontSize="12"/>
+                        <TextBlock Grid.Column="1" Text="💼" Foreground="White" FontSize="20" HorizontalAlignment="Right"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="3" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Right"/>
                     </Grid>
                 </Border>
 
@@ -123,21 +133,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-
-                        <TextBlock Text="Sales Of Day"
-                       Foreground="White"
-                       FontSize="16" FontWeight="SemiBold"/>
-                        <TextBlock Grid.Row="1" Text="Report"
-                       Foreground="White" Opacity="0.8"
-                       FontSize="12"/>
-
-                        <TextBlock Grid.Column="1" Text="📊"
-                       Foreground="White" FontSize="20"
-                       HorizontalAlignment="Right"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="3800"
-                       Foreground="White"
-                       FontSize="24" FontWeight="Bold"
-                       HorizontalAlignment="Right"/>
+                        <TextBlock Text="Sales Of Day" Foreground="White" FontSize="16" FontWeight="SemiBold"/>
+                        <TextBlock Grid.Row="1" Text="Report" Foreground="White" Opacity="0.8" FontSize="12"/>
+                        <TextBlock Grid.Column="1" Text="📊" Foreground="White" FontSize="20" HorizontalAlignment="Right"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="3800" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Right"/>
                     </Grid>
                 </Border>
 
@@ -152,21 +151,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-
-                        <TextBlock Text="Sales Of Month"
-                       Foreground="White"
-                       FontSize="16" FontWeight="SemiBold"/>
-                        <TextBlock Grid.Row="1" Text="Report"
-                       Foreground="White" Opacity="0.8"
-                       FontSize="12"/>
-
-                        <TextBlock Grid.Column="1" Text="📈"
-                       Foreground="White" FontSize="20"
-                       HorizontalAlignment="Right"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="5400"
-                       Foreground="White"
-                       FontSize="24" FontWeight="Bold"
-                       HorizontalAlignment="Right"/>
+                        <TextBlock Text="Sales Of Month" Foreground="White" FontSize="16" FontWeight="SemiBold"/>
+                        <TextBlock Grid.Row="1" Text="Report" Foreground="White" Opacity="0.8" FontSize="12"/>
+                        <TextBlock Grid.Column="1" Text="📈" Foreground="White" FontSize="20" HorizontalAlignment="Right"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="5400" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Right"/>
                     </Grid>
                 </Border>
 
@@ -181,21 +169,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-
-                        <TextBlock Text="Stock Shortage"
-                       Foreground="White"
-                       FontSize="16" FontWeight="SemiBold"/>
-                        <TextBlock Grid.Row="1" Text="Report"
-                       Foreground="White" Opacity="0.8"
-                       FontSize="12"/>
-
-                        <TextBlock Grid.Column="1" Text="⚠️"
-                       Foreground="White" FontSize="20"
-                       HorizontalAlignment="Right"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="2"
-                       Foreground="White"
-                       FontSize="24" FontWeight="Bold"
-                       HorizontalAlignment="Right"/>
+                        <TextBlock Text="Stock Shortage" Foreground="White" FontSize="16" FontWeight="SemiBold"/>
+                        <TextBlock Grid.Row="1" Text="Report" Foreground="White" Opacity="0.8" FontSize="12"/>
+                        <TextBlock Grid.Column="1" Text="⚠️" Foreground="White" FontSize="20" HorizontalAlignment="Right"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="2" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Right"/>
                     </Grid>
                 </Border>
 
@@ -210,21 +187,10 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-
-                        <TextBlock Text="Expired Products"
-                       Foreground="White"
-                       FontSize="16" FontWeight="SemiBold"/>
-                        <TextBlock Grid.Row="1" Text="Report"
-                       Foreground="White" Opacity="0.8"
-                       FontSize="12"/>
-
-                        <TextBlock Grid.Column="1" Text="🚫"
-                       Foreground="White" FontSize="20"
-                       HorizontalAlignment="Right"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="1"
-                       Foreground="White"
-                       FontSize="24" FontWeight="Bold"
-                       HorizontalAlignment="Right"/>
+                        <TextBlock Text="Expired Products" Foreground="White" FontSize="16" FontWeight="SemiBold"/>
+                        <TextBlock Grid.Row="1" Text="Report" Foreground="White" Opacity="0.8" FontSize="12"/>
+                        <TextBlock Grid.Column="1" Text="🚫" Foreground="White" FontSize="20" HorizontalAlignment="Right"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="1" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Right"/>
                     </Grid>
                 </Border>
 
@@ -239,24 +205,12 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-
-                        <TextBlock Text="Near Expiry"
-                       Foreground="White"
-                       FontSize="16" FontWeight="SemiBold"/>
-                        <TextBlock Grid.Row="1" Text="Report"
-                       Foreground="White" Opacity="0.8"
-                       FontSize="12"/>
-
-                        <TextBlock Grid.Column="1" Text="⚡"
-                       Foreground="White" FontSize="20"
-                       HorizontalAlignment="Right"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="1"
-                       Foreground="White"
-                       FontSize="24" FontWeight="Bold"
-                       HorizontalAlignment="Right"/>
+                        <TextBlock Text="Near Expiry" Foreground="White" FontSize="16" FontWeight="SemiBold"/>
+                        <TextBlock Grid.Row="1" Text="Report" Foreground="White" Opacity="0.8" FontSize="12"/>
+                        <TextBlock Grid.Column="1" Text="⚡" Foreground="White" FontSize="20" HorizontalAlignment="Right"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="1" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Right"/>
                     </Grid>
                 </Border>
-
             </UniformGrid>
         </ScrollViewer>
     </Grid>

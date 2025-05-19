@@ -36,7 +36,7 @@ namespace WpfApp1
         {
             ClearSelection();
             PatientsBtn.Tag = "Selected";
-            new PatientWindow().Show();
+            new PatientsWindow().Show();
             Close();
         }
 
@@ -47,5 +47,28 @@ namespace WpfApp1
             new MedicinePage().Show();
             Close();
         }
+        private void AllergiesButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClearSelection();
+            AllergiesBtn.Tag = "Selected";
+            new AllergiesWindow().Show();
+            Close();
+        }
+        private void InventoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClearSelection();
+            InventoryBtn.Tag = "Selected";
+            new InventoryWindow().Show();
+            Close();
+        }
+        private void SuppliersButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClearSelection();
+            SuppliersBtn.Tag = "Selected";
+            new SupplierWindow().Show();
+            Close();
+        }
+
+
     }
 }

@@ -1,10 +1,9 @@
 ﻿<Window x:Class="WpfApp1.MedicinePage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Medicine Component" Height="700" Width="1200"
         WindowStartupLocation="CenterScreen"
-        Background="White">
+        Background="{StaticResource AppBackground}">
 
     <Window.Resources>
         <Style x:Key="RoundedButtonStyle" TargetType="Button">
@@ -26,8 +25,8 @@
 
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
         <!-- Back Button -->
@@ -44,118 +43,105 @@
                 Cursor="Hand"
                 Grid.Column="0"/>
 
-        <!-- Product Form -->
-        <Border Background="#F4F4F4" CornerRadius="10" Padding="20" Margin="10, 40">
-            <StackPanel>
-                <TextBlock Text="Product Form" FontSize="18" FontWeight="Bold" Margin="0,0,0,20" />
+        <!-- Product Form Section (Scrollable) -->
+        <Border Background="#F4F4F4" CornerRadius="10" Padding="20" Margin="10,40">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <TextBlock Text="Product Form" FontSize="18" FontWeight="Bold" Margin="0,0,0,20" />
 
-                <TextBlock Text="Medicine type" Margin="0,0,0,5" />
-                <ComboBox x:Name="MedicineTypeComboBox"
-                  Width="270"
-                  Height="28"
-                  Margin="0,5"
-                  FontSize="14"
-                  Foreground="Black"
-                  Background="White"
-                  BorderBrush="Gray"
-                  BorderThickness="1"
-                  ItemsSource="{Binding MedicineTypes}"
-                  SelectedItem="{Binding SelectedMedicineType, Mode=TwoWay}" />
+                    <TextBlock Text="Medicine Type" Margin="0,0,0,5" />
+                    <ComboBox x:Name="MedicineTypeComboBox"
+                              Width="270" Height="28" Margin="0,5"
+                              FontSize="14" Foreground="Black" Background="White" BorderBrush="Gray"
+                              ItemsSource="{Binding MedicineTypes}" />
 
+                    <TextBlock Text="English Name" Margin="0,10,0,2"/>
+                    <TextBox x:Name="MedicineEnglishTextBox" Margin="0,5,0,5" FontSize="14" />
 
-                <TextBlock Text="Medicine in English" FontWeight="Normal" Margin="0,0,0,2"/>
-                <Border CornerRadius="6" BorderBrush="Gray" BorderThickness="1" Margin="0,5,0,5" Background="White">
-                    <TextBox x:Name="MedicineEnglishTextBox"
-                             Background="Transparent"
-                             BorderThickness="0"
-                             Foreground="Black"
-                             Padding="6"
-                             FontSize="14"/>
-                </Border>
+                    <TextBlock Text="Arabic Name" Margin="0,10,0,2"/>
+                    <TextBox x:Name="MedicineArabicTextBox" Margin="0,5,0,5" FontSize="14" />
 
-                <TextBlock Text="Medicine in Arabic" Margin="0,0,0,5" />
-                <Border CornerRadius="6" BorderBrush="Gray" BorderThickness="1" Margin="0,5,0,5" Background="White">
-                    <TextBox x:Name="MedicineArabicTextBox"
-                             Background="Transparent"
-                             BorderThickness="0"
-                             Foreground="Black"
-                             Padding="6"
-                             FontSize="14"/>
-                </Border>
+                    <TextBlock Text="Active Ingredient" Margin="0,10,0,2"/>
+                    <TextBox x:Name="ActiveIngredientTextBox" Margin="0,5,0,5" FontSize="14" />
 
-                <TextBlock Text="Description" Margin="0,0,0,5" />
-                <Border CornerRadius="6" BorderBrush="Gray" BorderThickness="1" Margin="0,5,0,5" Background="White">
-                    <TextBox x:Name="MedicineDescriptionTextBox"
-                             Background="Transparent"
-                             BorderThickness="0"
-                             Foreground="Black"
-                             Padding="14"
-                             FontSize="14"/>
-                </Border>
+                    <TextBlock Text="Dose" Margin="0,10,0,2"/>
+                    <TextBox x:Name="DoseTextBox" Margin="0,5,0,5" FontSize="14" />
 
-                <TextBlock Text="Price" Margin="0,0,0,5" />
-                <Border CornerRadius="6" BorderBrush="Gray" BorderThickness="1" Margin="0,5,0,5" Background="White">
-                    <TextBox x:Name="MedicinePriceTextBox"
-                             Background="Transparent"
-                             BorderThickness="0"
-                             Foreground="Black"
-                             Padding="6"
-                             FontSize="14"/>
-                </Border>
+                    <TextBlock Text="Company" Margin="0,10,0,2"/>
+                    <TextBox x:Name="CompanyTextBox" Margin="0,5,0,5" FontSize="14" />
 
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,20">
-                    <Controls:ToggleSwitch Header="Available"
-                                           IsOn="True"
-                                           Foreground="Black"
-                                           Background="White"
-                                           Width="100"/>
+                    <TextBlock Text="Use/Description" Margin="0,10,0,2"/>
+                    <TextBox x:Name="UseTextBox" Margin="0,5,0,5" FontSize="14" />
+
+                    <TextBlock Text="Price per Box" Margin="0,10,0,2"/>
+                    <TextBox x:Name="PricePerBoxTextBox" Margin="0,5,0,5" FontSize="14" />
+
+                    <TextBlock Text="Price per Strip" Margin="0,10,0,2"/>
+                    <TextBox x:Name="PricePerStripTextBox" Margin="0,5,0,5" FontSize="14" />
+
+                    <TextBlock Text="Origin" Margin="0,10,0,2"/>
+                    <ComboBox x:Name="OriginComboBox"
+                              Width="270" Height="28" Margin="0,5"
+                              FontSize="14" Foreground="Black" Background="White" BorderBrush="Gray"
+                              ItemsSource="{Binding Origins}" />
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                        <Button x:Name="SaveButton" Content="Save" Margin="5" Padding="10,4" Background="#2980B9" Foreground="White" 
+                                Click="SaveMedicine_Click" Cursor="Hand" Style="{StaticResource RoundedButtonStyle}"/>
+                        <Button Content="Cancel" Margin="5" Padding="10,4" Background="#BDC3C7" Foreground="Black" 
+                                Click="CancelMedicine_Click" Cursor="Hand" Style="{StaticResource RoundedButtonStyle}"/>
+                    </StackPanel>
                 </StackPanel>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Content="Save" Margin="5" Padding="10,4" Background="#2980B9" Foreground="White" 
-                            Click="SaveMedicine_Click" Cursor="Hand" Style="{StaticResource RoundedButtonStyle}"/>
-                    <Button Content="Cancel" Margin="5" Padding="10,4" Background="#BDC3C7" Foreground="Black" 
-                            Click="CancelMedicine_Click" Cursor="Hand" Style="{StaticResource RoundedButtonStyle}"/>
-                </StackPanel>
-            </StackPanel>
+            </ScrollViewer>
         </Border>
 
-        <!-- Product List Section -->
+        <!-- Product List Section WITH SEARCH BAR -->
         <Grid Grid.Column="1" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
+                <!-- Product List Title -->
+                <RowDefinition Height="Auto" />
+                <!-- Search bar -->
                 <RowDefinition Height="*" />
+                <!-- DataGrid -->
             </Grid.RowDefinitions>
 
             <TextBlock Text="Product List" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
 
+            <!-- Search Bar -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10" Grid.Row="1">
+                <TextBlock Text="Search:" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <TextBox x:Name="MedicineSearchTextBox"
+                         Width="260"
+                         Height="28"
+                         Margin="0,0,0,0"
+                         FontSize="14"
+                         VerticalAlignment="Center"
+                         TextChanged="MedicineSearchTextBox_TextChanged"/>
+            </StackPanel>
+
             <DataGrid x:Name="MedicineListGrid"
-                      Grid.Row="1"
+                      Grid.Row="2"
                       AutoGenerateColumns="False"
                       CanUserAddRows="False"
                       IsReadOnly="True"
                       HeadersVisibility="Column"
                       RowHeight="35"
                       FontSize="14"
-                      HorizontalScrollBarVisibility="Auto"
-                      VerticalScrollBarVisibility="Auto"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ItemsSource="{Binding FilteredMedicines}"
                       Margin="0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="#" Binding="{Binding Index}" Width="40"/>
-                    <DataGridTextColumn Header="Category" Binding="{Binding MedicineType}" Width="*"/>
-                    <DataGridTemplateColumn Header="Product Info" Width="2*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding NameEn}" FontWeight="Bold"/>
-                                    <TextBlock Text="Price: {Binding PricePerBox}" />
-                                    <TextBlock Text="Status: {Binding Availability}" />
-                                    <TextBlock Text="Description: {Binding Use}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Type" Binding="{Binding MedicineType}" Width="80"/>
+                    <DataGridTextColumn Header="English Name" Binding="{Binding NameEn}" Width="120"/>
+                    <DataGridTextColumn Header="Arabic Name" Binding="{Binding NameAr}" Width="120"/>
+                    <DataGridTextColumn Header="Ingredient" Binding="{Binding ActiveIngredient}" Width="120"/>
+                    <DataGridTextColumn Header="Dose" Binding="{Binding Dose}" Width="80"/>
+                    <DataGridTextColumn Header="Company" Binding="{Binding Company}" Width="120"/>
+                    <DataGridTextColumn Header="Description" Binding="{Binding Use}" Width="160"/>
+                    <DataGridTextColumn Header="Box Price" Binding="{Binding PricePerBox}" Width="80"/>
+                    <DataGridTextColumn Header="Strip Price" Binding="{Binding PricePerStrip}" Width="80"/>
+                    <DataGridTextColumn Header="Origin" Binding="{Binding Origin}" Width="80"/>
                     <DataGridTemplateColumn Header="Action" Width="140">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

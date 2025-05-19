@@ -1,0 +1,193 @@
+-- For all tablets, insert both 'strip' and 'box'
+INSERT INTO medicine_packaging (barcode, packaging_type_id)
+SELECT m.barcode, pt.id
+FROM medicines m
+JOIN packaging_types pt
+  ON (m.medicine_type = 'Tablet' AND pt.name IN ('strip', 'box'))
+  OR (m.medicine_type <> 'Tablet' AND pt.name = 'box');
+
+INSERT INTO medicines (
+  barcode,
+  name_en,
+  name_ar,
+  active_ingredient,
+  dose,
+  medicine_type,
+  price_per_box,
+  price_per_strip,
+  strips_per_box,
+  company,
+  `use`,
+  origin
+)
+VALUES
+('1234567890123', 'Paracetamol', 'باراسيتامول', 'Paracetamol', '500mg', 'Tablet', 15.00, 2.00, 10, 'Pharma Co', 'Pain relief', 'Local'),
+('1234567890124', 'Ibuprofen', 'ايبوبروفين', 'Ibuprofen', '400mg', 'Tablet', 25.00, 3.00, 12, 'Pharma Co', 'Pain relief and anti-inflammatory', 'Local'),
+('1234567890126', 'Cetrizine', 'سيتريزين', 'Cetrizine', '10mg', 'Tablet', 20.00, 4.00, 10, 'Health Pharma', 'Allergy relief', 'Local'),
+('1234567890127', 'Loratadine', 'لوراتادين', 'Loratadine', '10mg', 'Tablet', 18.00, 6.00, 15, 'MediLife', 'Antihistamine for allergies', 'Imported'),
+('1234567890129', 'Aspirin', 'اسبرين', 'Aspirin', '300mg', 'Tablet', 10.00, 10.00, 20, 'Pharma Co', 'Pain relief and blood thinner', 'Local'),
+('1234567890130', 'Vitamin C', 'فيتامين ج', 'Ascorbic Acid', '500mg', 'Tablet', 15.00, 8.00, 10, 'Health Pharma', 'Immune support', 'Local'),
+('1234567890133', 'Metformin', 'ميتفورمين', 'Metformin', '500mg', 'Tablet', 40.00, 5.00, 15, 'Pharma Co', 'Blood sugar control for diabetes', 'Local'),
+('1234567890140', 'Ranitidine', 'رانيتيدين', 'Ranitidine', '150mg', 'Tablet', 30.00, 4.00, 10, 'Medica Co', 'Stomach acid reduction', 'Local'),
+('1234567890144', 'Montelukast', 'مونتيلوكاست', 'Montelukast', '10mg', 'Tablet', 45.00, 5.00, 12, 'MediLife', 'Allergy and asthma relief', 'Imported'),
+('1234567890145', 'Amlodipine', 'أملوديبين', 'Amlodipine', '5mg', 'Tablet', 40.00, 6.00, 10, 'Global Pharma', 'Blood pressure control', 'Imported'),
+('1234567890146', 'Simvastatin', 'سيمفاستاتين', 'Simvastatin', '20mg', 'Tablet', 50.00, 2.00, 14, 'Pharma Co', 'Cholesterol reduction', 'Local'),
+('1234567890147', 'Clopidogrel', 'كلوبيدوجريل', 'Clopidogrel', '75mg', 'Tablet', 70.00, 2.00, 10, 'Medica Co', 'Blood thinner for heart health', 'Imported'),
+('1234567890148', 'Levothyroxine', 'ليفوثيروكسين', 'Levothyroxine', '50mg', 'Tablet', 60.00, 3.00, 10, 'Global Pharma', 'Thyroid hormone replacement', 'Imported'),
+('1234567890150', 'Pantoprazole', 'بانتوبرازول', 'Pantoprazole', '40mg', 'Tablet', 65.00, 3.00, 15, 'Health Pharma', 'Acid reflux treatment', 'Local'),
+('1234567890152', 'Ondansetron', 'أوندانسيترون', 'Ondansetron', '4mg', 'Tablet', 70.00, 4.00, 12, 'MediLife', 'Nausea and vomiting control', 'Imported'),
+('1234567890153', 'Warfarin', 'وارفارين', 'Warfarin', '5mg', 'Tablet', 80.00, 2.00, 10, 'Global Pharma', 'Blood thinner for clot prevention', 'Imported'),
+('1234567890154', 'Panadol', 'بنادول', 'Paracetamol', '500mg', 'Tablet', 20.00, 10.00, 24, 'GSK', 'Pain relief and fever reduction', 'Imported'),
+('1234567890155', 'Panadol Extra', 'بنادول إكسترا', 'Paracetamol + Caffeine','500mg + 65mg','Tablet',30.00,8.00,12,'GSK','Pain relief with added caffeine for extra strength','Imported'),
+('1234567890156', 'Panadol Cold and Flu','بنادول للبرد والانفلونزا','Paracetamol + Phenylephrine + Guaifenesin','500mg + 5mg + 100mg','Tablet',35.00,6.00,10,'GSK','Cold and flu relief','Imported'),
+('1234567890157', 'Panadol Advance', 'بنادول أدفانس', 'Paracetamol', '500mg', 'Tablet', 25.00, 9.00, 12, 'GSK', 'Faster pain relief', 'Imported'),
+('1234567890158', 'Panadol Joint', 'بنادول نايت', 'Paracetamol', '665mg', 'Tablet', 40.00, 7.00, 20, 'GSK', 'Long-lasting relief for joint pain', 'Imported'),
+('1234567890159', 'Panadol Night', 'بنادول للأطفال والرضع','Paracetamol + Diphenhydramine','500mg + 25mg','Tablet',45.00,5.00,8,'GSK','Pain relief with sleep aid','Imported'),
+('1234567890175', 'Furosemide', 'فوروسيميد', 'Furosemide', '40mg', 'Tablet', 30.00, 5.00, 10, 'Pharma Co', 'Diuretic for fluid retention and high blood pressure','Local'),
+('1234567890176', 'Lisinopril', 'ليزينوبريل', 'Lisinopril', '10mg', 'Tablet', 45.00, 3.00, 10, 'Medica Co', 'ACE inhibitor for blood pressure control', 'Imported'),
+('1234567890177', 'Atorvastatin', 'اتورفاستاتين', 'Atorvastatin', '20mg', 'Tablet', 50.00, 4.00, 14, 'Global Pharma', 'Cholesterol reduction', 'Imported'),
+('1234567890182', 'Ciprofloxacin', 'سيبروفلوكساسين', 'Ciprofloxacin', '500mg', 'Tablet', 65.00, 3.00, 10, 'Health Pharma', 'Broad-spectrum antibiotic', 'Local'),
+('1234567890185', 'Hydrochlorothiazide','هيدروكلوروثيازيد','Hydrochlorothiazide','25mg','Tablet',35.00,5.00,10,'Pharma Co','Diuretic for high blood pressure','Local'),
+('1234567890189', 'Metoprolol', 'ميتوبرولول', 'Metoprolol', '50mg', 'Tablet', 45.00, 4.00, 15, 'Global Pharma', 'Beta-blocker for high blood pressure and heart issues','Imported'),
+('1234567890190', 'Alendronate', 'أليندرونات', 'Alendronate', '70mg', 'Tablet', 70.00, 2.00, 10, 'Health Pharma', 'Osteoporosis treatment', 'Local'),
+('1234567890191', 'Digoxin', 'ديجوكسين', 'Digoxin', '0.25mg', 'Tablet', 60.00, 3.00, 10, 'Medica Co', 'Heart failure and arrhythmia treatment', 'Imported'),
+('1234567890192', 'Spironolactone', 'سبيرونولاكتون', 'Spironolactone', '25mg', 'Tablet', 55.00, 2.00, 10, 'Global Pharma', 'Diuretic for heart failure and high blood pressure','Imported'),
+('1234567890195', 'Finasteride', 'فيناسترايد', 'Finasteride', '5mg', 'Tablet', 85.00, 2.00, 10, 'Pharma Co', 'Hair loss treatment and prostate enlargement','Local'),
+('1234567890199', 'Allopurinol', 'لوبيورينول', 'Allopurinol', '300mg', 'Tablet', 65.00, 3.00, 10, 'Health Pharma', 'Gout and high uric acid control', 'Local'),
+('1234567890200', 'Mirtazapine', 'ميرتازابين', 'Mirtazapine', '15mg', 'Tablet', 100.00, 2.00, 8, 'Pharma Co', 'Depression and sleep aid', 'Local'),
+('1234567890202', 'Pioglitazone', 'بيوجليتازون', 'Pioglitazone', '30mg', 'Tablet', 85.00, 2.00, 12, 'Global Pharma', 'Blood sugar control for diabetes', 'Imported'),
+('1234567890203', 'Rivaroxaban', 'ريفاروكسابان', 'Rivaroxaban', '10mg', 'Tablet', 120.00, 3.00, 10, 'Global Pharma', 'Blood thinner for clot prevention', 'Imported'),
+('1234567890205', 'Levofloxacin', 'ليفوفلوكساسين', 'Levofloxacin', '500mg', 'Tablet', 90.00, 3.00, 10, 'Medica Co', 'Broad-spectrum antibiotic', 'Imported'),
+('1234567890206', 'Montelukast', 'مونتيلوكاست', 'Montelukast', '10mg', 'Tablet', 80.00, 2.00, 12, 'Global Pharma', 'Allergy and asthma control', 'Imported'),
+('1234567890207', 'Methocarbamol', 'ميثوكاربامول', 'Methocarbamol', '500mg', 'Tablet', 75.00, 4.00, 10, 'Health Pharma', 'Muscle relaxant', 'Local'),
+('1234567890208', 'Rosuvastatin', 'روسوفاستاتين', 'Rosuvastatin', '20mg', 'Tablet', 95.00, 2.00, 10, 'Global Pharma', 'Cholesterol reduction', 'Imported'),
+('1234567890209', 'Baclofen', 'باكلوفين', 'Baclofen', '10mg', 'Tablet', 85.00, 3.00, 10, 'MediLife', 'Muscle relaxant and spasm relief', 'Imported'),
+('1234567890210', 'Dexamethasone', 'ديكساميثازون', 'Dexamethasone', '4mg', 'Tablet', 70.00, 4.00, 10, 'Pharma Co', 'Steroid for inflammation and immune suppression','Local'),
+('1234567890211', 'Carvedilol', 'كارفيديلول', 'Carvedilol', '6.25mg', 'Tablet', 80.00, 2.00, 8, 'Global Pharma', 'Beta-blocker for heart issues', 'Imported'),
+('1234567890217', 'Olmesartan', 'أولميسارتان', 'Olmesartan', '20mg', 'Tablet', 80.00, 3.00, 10, 'Global Pharma', 'Blood pressure control', 'Imported'),
+('1234567890218', 'Zolpidem', 'زولبيديم', 'Zolpidem', '10mg', 'Tablet', 90.00, 2.00, 8, 'Health Pharma', 'Sleep aid for insomnia', 'Local'),
+('1234567890219', 'Sertraline', 'سيرترالين', 'Sertraline', '50mg', 'Tablet', 100.00, 2.00, 10, 'Medica Co', 'Depression and anxiety relief', 'Imported'),
+('1234567890220', 'Ranitidine', 'رانيتيدين', 'Ranitidine', '150mg', 'Tablet', 60.00, 3.00, 8, 'Global Pharma', 'Stomach acid reduction', 'Imported'),
+('1234567890221', 'Loperamide', 'لوبيراميد', 'Loperamide', '2mg', 'Tablet', 50.00, 4.00, 10, 'Health Pharma', 'Diarrhea control', 'Local'),
+
+-- Non-tablets (strips_per_box = NULL)
+('1234567890125', 'Amoxicillin', 'اموكسيسيلين', 'Amoxicillin', '500mg', 'Other', 30.00, NULL, NULL, 'Medica Co', 'Antibiotic for bacterial infections', 'Imported'),
+('1234567890128', 'Azithromycin', 'زيثرومايسين', 'Azithromycin', '250mg', 'Other', 45.00, NULL, NULL, 'Global Pharma', 'Broad-spectrum antibiotic', 'Imported'),
+('1234567890131', 'Omeprazole', 'اوميبرازول', 'Omeprazole', '20mg', 'Other', 35.00, NULL, NULL, 'Global Pharma', 'Acid reflux and heartburn relief', 'Imported'),
+('1234567890132', 'Dextromethorphan', 'ديكستروميثورفان', 'Dextromethorphan', '15mg', 'Drink', 25.00, NULL, NULL, 'MediLife', 'Cough suppressant', 'Local'),
+('1234567890134', 'Cetirizine Syrup', 'سيتريزين شراب', 'Cetirizine', '5mg/5ml', 'Drink', 35.00, NULL, NULL, 'Medica Co', 'Allergy relief for children', 'Imported'),
+('1234567890135', 'Salbutamol', 'سالبيوتامول', 'Salbutamol', '100mg', 'Other', 60.00, NULL, NULL, 'Global Pharma', 'Bronchodilator for asthma', 'Imported'),
+('1234567890141', 'Mupirocin', 'موبيروسين', 'Mupirocin', '2%', 'Other', 40.00, NULL, NULL, 'Global Pharma', 'Topical antibiotic for skin infections', 'Imported'),
+('1234567890142', 'Hydrocortisone', 'هيدروكورتيزون', 'Hydrocortisone', '1%', 'Cream', 35.00, NULL, NULL, 'Pharma Co', 'Anti-inflammatory for skin', 'Local'),
+('1234567890143', 'Guaifenesin', 'غوايفينيسين', 'Guaifenesin', '200mg', 'Drink', 28.00, NULL, NULL, 'Health Pharma', 'Expectorant for chest congestion', 'Local'),
+('1234567890149', 'Doxycycline', 'دوكسي سيكلين', 'Doxycycline', '100mg', 'Other', 55.00, NULL, NULL, 'Pharma Co', 'Broad-spectrum antibiotic', 'Local'),
+('1234567890151', 'Fluconazole', 'فلوكونازول', 'Fluconazole', '150mg', 'Other', 75.00, NULL, NULL, 'Global Pharma', 'Antifungal for yeast infections', 'Imported'),
+('1234567890178', 'Gabapentin', 'جابابنتين', 'Gabapentin', '300mg', 'Other', 70.00, NULL, NULL, 'Health Pharma', 'Nerve pain relief and seizure control', 'Local'),
+('1234567890193', 'Fluticasone', 'فلوتيكازون', 'Fluticasone', '50mg', 'Other', 90.00, NULL, NULL, 'MediLife', 'Asthma and allergy relief', 'Imported'),
+('1234567890194', 'Tamsulosin', 'تامسولوسين', 'Tamsulosin', '0.4mg', 'Other', 75.00, NULL, NULL, 'Health Pharma', 'Urinary symptoms relief in enlarged prostate','Local'),
+('1234567890201', 'Terazosin', 'تيرازوسين', 'Terazosin', '2mg', 'Other', 70.00, NULL, NULL, 'Medica Co', 'High blood pressure and enlarged prostate',  'Imported'),
+('1234567890204', 'Esomeprazole', 'يسوميبرازول', 'Esomeprazole', '40mg', 'Other', 100.00, NULL, NULL, 'Health Pharma', 'Acid reflux and stomach ulcer treatment',    'Local'),
+('1234567890213', 'Celecoxib', 'سيليكوكسيب', 'Celecoxib', '200mg', 'Other', 90.00, NULL, NULL, 'Health Pharma', 'Pain relief and anti-inflammatory', 'Local'),
+('1234567890215', 'Tolterodine', 'تولتيرودين', 'Tolterodine', '2mg', 'Other', 95.00, NULL, NULL, 'Pharma Co', 'Bladder control for overactive bladder', 'Local'),
+('1234567890216', 'Venlafaxine', 'فينلافاكسين', 'Venlafaxine', '75mg', 'Other', 110.00, NULL, NULL, 'MediLife', 'Depression and anxiety relief', 'Imported'),
+('1234567890198', 'Albuterol', 'ألبوتيرول', 'Albuterol', '100mg', 'Other', 85.00, NULL, NULL, 'Global Pharma', 'Bronchodilator for asthma and breathing issues','Imported');
+
+INSERT INTO patients (full_name, phone_number, birth_date, sexual_orientation)
+VALUES
+  ('Ali Hassan',      '01000000001', '1990-01-05', 'Male'),
+  ('Sara Mostafa',    '01000000002', '1985-02-13', 'Female'),
+  ('Omar Salah',      '01000000003', '1998-03-17', 'Male'),
+  ('Fatma Samir',     '01000000004', '1977-12-22', 'Female'),
+  ('Mona Adel',       '01000000005', '2001-07-08', 'Female'),
+  ('Mahmoud Fathy',   '01000000006', '1995-11-11', 'Male'),
+  ('Yasmin Mohamed',  '01000000007', '1988-09-15', 'Female'),
+  ('Mostafa Khaled',  '01000000008', '1993-04-29', 'Male'),
+  ('Layla Ehab',      '01000000009', '2000-06-30', 'Female'),
+  ('Rami Fouad',      '01000000010', '1992-08-20', 'Male');
+
+
+
+-- Patient 4: Fatma Samir (Paracetamol)
+INSERT INTO patient_allergies (patient_id, active_ingredient, reaction) VALUES
+  (4, 'Paracetamol', 'Rash and swelling after intake');
+
+-- Patient 5: Mona Adel (Ibuprofen)
+INSERT INTO patient_allergies (patient_id, active_ingredient, reaction) VALUES
+  (5, 'Ibuprofen', 'Severe stomach pain');
+
+-- Patient 6: Mahmoud Fathy (Cetirizine)
+INSERT INTO patient_allergies (patient_id, active_ingredient, reaction) VALUES
+  (6, 'Cetirizine', 'Drowsiness and hives');
+
+-- Patient 7: Yasmin Mohamed (Amoxicillin)
+INSERT INTO patient_allergies (patient_id, active_ingredient, reaction) VALUES
+  (7, 'Amoxicillin', 'Shortness of breath');
+
+-- Patient 8: Mostafa Khaled (3 allergies)
+INSERT INTO patient_allergies (patient_id, active_ingredient, reaction) VALUES
+  (8, 'Paracetamol', 'Hives'),
+  (8, 'Loratadine', 'Swelling of lips'),
+  (8, 'Omeprazole', 'Abdominal cramps');
+
+-- Patient 9: Layla Ehab (4 allergies)
+INSERT INTO patient_allergies (patient_id, active_ingredient, reaction) VALUES
+  (9, 'Azithromycin', 'Itching and redness'),
+  (9, 'Aspirin', 'Asthma attack'),
+  (9, 'Dextromethorphan', 'Mild rash'),
+  (9, 'Simvastatin', 'Muscle pain');
+
+-- Patient 10: Rami Fouad (3 allergies)
+INSERT INTO patient_allergies (patient_id, active_ingredient, reaction) VALUES
+  (10, 'Metformin', 'Vomiting'),
+  (10, 'Warfarin', 'Bruising'),
+  (10, 'Pantoprazole', 'Headache and nausea');
+
+INSERT IGNORE INTO packaging_types (name) VALUES ('strip'), ('box');
+-- For tablet medicines: both strip and box
+INSERT IGNORE INTO medicine_packaging (barcode, packaging_type_id)
+SELECT m.barcode, pt.id
+FROM medicines m
+JOIN packaging_types pt ON (m.medicine_type = 'Tablet' AND pt.name IN ('strip', 'box'));
+
+-- For non-tablet medicines: only box
+INSERT IGNORE INTO medicine_packaging (barcode, packaging_type_id)
+SELECT m.barcode, pt.id
+FROM medicines m
+JOIN packaging_types pt ON (m.medicine_type <> 'Tablet' AND pt.name = 'box');
+-- Check the mappings
+SELECT * FROM medicine_packaging LIMIT 20;
+-- SHORTAGE: Low stock, normal expiry
+INSERT INTO inventory (barcode, packaging_type_id, quantity, expiry_date)
+SELECT mp.barcode, mp.packaging_type_id,
+    FLOOR(RAND()*3)+1 AS quantity,              -- 1 to 3 strips/boxes (shortage)
+    DATE_ADD(CURDATE(), INTERVAL FLOOR(RAND()*10)+80 DAY)  -- expires in 80–89 days
+FROM medicine_packaging mp
+ORDER BY RAND()
+LIMIT 5;
+
+-- NEAR EXPIRY: Decent stock, expires in 10–30 days
+INSERT INTO inventory (barcode, packaging_type_id, quantity, expiry_date)
+SELECT mp.barcode, mp.packaging_type_id,
+    FLOOR(RAND()*10)+5 AS quantity,             -- 5 to 14 strips/boxes
+    DATE_ADD(CURDATE(), INTERVAL FLOOR(RAND()*21)+10 DAY) -- expires in 10–30 days
+FROM medicine_packaging mp
+ORDER BY RAND()
+LIMIT 5;
+
+-- ALREADY EXPIRED: Some stock, expired 1–30 days ago
+INSERT INTO inventory (barcode, packaging_type_id, quantity, expiry_date)
+SELECT mp.barcode, mp.packaging_type_id,
+    FLOOR(RAND()*10)+2 AS quantity,             -- 2 to 11 strips/boxes
+    DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND()*30)+1 DAY) -- expired 1–30 days ago
+FROM medicine_packaging mp
+ORDER BY RAND()
+LIMIT 3;
+
+-- NORMAL STOCK: High stock, long expiry (2–14 months out)
+INSERT INTO inventory (barcode, packaging_type_id, quantity, expiry_date)
+SELECT mp.barcode, mp.packaging_type_id,
+    FLOOR(RAND()*90)+20 AS quantity,            -- 20 to 109 strips/boxes
+    DATE_ADD(CURDATE(), INTERVAL FLOOR(RAND()*365)+60 DAY) -- expires 2–14 months
+FROM medicine_packaging mp
+ORDER BY RAND()
+LIMIT 10;
