@@ -5,6 +5,14 @@
         WindowStartupLocation="CenterScreen"
         Background="{StaticResource AppBackground}">
 
+    <Window.Resources>
+        <DropShadowEffect x:Key="DropShadowEffect"
+                          Color="Black"
+                          BlurRadius="6"
+                          ShadowDepth="2"
+                          Opacity="0.2"/>
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -17,21 +25,76 @@
         <Border Grid.Column="0" Background="{StaticResource SidebarBackground}">
             <StackPanel>
                 <!-- user header -->
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Center"
-                            Margin="0,24,0,16">
-                    <Ellipse Width="32" Height="32" Fill="{StaticResource AccentBrush}"/>
+                <Grid x:Name="UserMenuRoot" HorizontalAlignment="Left" Margin="20,20,0,10" VerticalAlignment="Top">
+                    <Button x:Name="AvatarButton"
+                    Width="36" Height="36"
+                    BorderThickness="0"
+                    Background="Transparent"
+                    ToolTip="{Binding UserFullName}"
+                    Click="AvatarButton_Click"
+                    Cursor="Hand"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Padding="0">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <!-- Clean circular shape -->
+                                    <Ellipse x:Name="EllipseElement" Fill="Green" Width="36" Height="36"/>
+                                    <!-- Centered user icon -->
+                                    <TextBlock Text="👤"
+                           Foreground="White"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="EllipseElement" Property="Fill" Value="#1ABC9C"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
                     <TextBlock x:Name="UserNameText"
                                Text="Full Name"
                                Foreground="{StaticResource SidebarText}"
                                FontSize="16" FontWeight="SemiBold"
-                               Margin="8,0,0,0"
+                               Margin="50,0,0,0"
                                VerticalAlignment="Center"/>
                     <TextBlock Text="▼"
                                Foreground="{StaticResource SidebarText}"
-                               Margin="4,0,0,0"
+                               Margin="132,0,0,0"
                                VerticalAlignment="Center"/>
-                </StackPanel>
+
+                    <!-- Dropdown Popup -->
+                        <Popup x:Name="LogoutPopup"
+                       Placement="Top"
+                       PlacementTarget="{Binding ElementName=AvatarButton}"
+                       StaysOpen="False"
+                       AllowsTransparency="True"
+                       VerticalOffset="-5">
+                            <Border Background="White"
+                            BorderBrush="LightGray"
+                            BorderThickness="1"
+                            CornerRadius="4"
+                            Padding="10"
+                            Effect="{StaticResource DropShadowEffect}">
+                                <StackPanel>
+                                    <Button Content="Logout"
+                                    Click="Logout_Click"
+                                    Background="Transparent"
+                                    Foreground="Black"
+                                    BorderBrush="Transparent"
+                                    HorizontalAlignment="Left"
+                                    Padding="5"
+                                    Cursor="Hand"/>
+                                </StackPanel>
+                            </Border>
+                        </Popup>
+                </Grid>
 
                 <!-- nav items -->
                 <StackPanel>

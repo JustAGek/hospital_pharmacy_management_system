@@ -59,13 +59,36 @@ namespace WpfApp1
                 return;
             }
 
-            // record session
-            using var sess = conn.CreateCommand();
-            sess.CommandText =
-              "INSERT INTO user_sessions(user_id) " +
-              "VALUES((SELECT id FROM users WHERE username=@u))";
-            sess.Parameters.AddWithValue("@u", user);
-            sess.ExecuteNonQuery();
+            // Get user type and ID
+            string userType = "";
+            int userId = -1;
+
+            using (var typeCmd = conn.CreateCommand())
+            {
+                typeCmd.CommandText = "SELECT user_type, id FROM users WHERE username=@u";
+                typeCmd.Parameters.AddWithValue("@u", user);
+                using var tr = typeCmd.ExecuteReader();
+                if (tr.Read())
+                {
+                    userType = tr.GetString(0);
+                    userId = tr.GetInt32(1);
+                }
+
+            }
+
+            Session.UserFullName = fullName;
+            Session.UserType = userType.ToLower();
+            Session.UserId = userId;
+
+            // Track login time for pharmacist
+            if (userType == "pharmacist")
+            {
+                using var sess = conn.CreateCommand();
+                sess.CommandText = "INSERT INTO user_sessions(user_id, login_time) VALUES(@id, NOW())";
+                sess.Parameters.AddWithValue("@id", userId);
+                sess.ExecuteNonQuery();
+            }
+
 
             // open dashboard
             var dash = new DashboardWindow(fullName);
