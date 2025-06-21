@@ -11,5 +11,6 @@ namespace WpfApp1
         public static string UserFullName { get; set; } = "";
         public static string UserType { get; set; } = "";
         public static int UserId { get; set; }
+        public static DateTime LoginTime { get; set; }
     }
 }

@@ -54,19 +54,48 @@ namespace WpfApp1
 
         private void DeleteUser_Click(object sender, RoutedEventArgs e)
         {
-            if ((sender as FrameworkElement)?.DataContext is not UserViewModel vm) return;
-
-            if (MessageBox.Show($"Delete user '{vm.Username}'?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes)
+            if ((sender as FrameworkElement)?.DataContext is not UserViewModel vm)
                 return;
 
-            using var conn = DbHelper.GetConnection();
-            using var cmd = conn.CreateCommand();
-            cmd.CommandText = "DELETE FROM users WHERE id=@id";
-            cmd.Parameters.AddWithValue("@id", vm.Id);
-            cmd.ExecuteNonQuery();
+            if (Session.UserId == vm.Id)
+            {
+                MessageBox.Show("You cannot delete the currently logged-in user.", "Operation Denied", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
-            LoadUsers();
+            if (MessageBox.Show($"Are you sure you want to delete user: {vm.FullName}?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+                return;
+
+            try
+            {
+                using var conn = DbHelper.GetConnection();
+                using var cmd = conn.CreateCommand();
+                cmd.CommandText = "DELETE FROM users WHERE id = @id";
+                cmd.Parameters.AddWithValue("@id", vm.Id);
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("User deleted successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LoadUsers(); // Refresh the list
+                }
+                else
+                {
+                    MessageBox.Show("User could not be deleted.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while deleting user:\n" + ex.Message, "Exception", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+        private void BackToDashboard_Click(object sender, RoutedEventArgs e)
+        {
+            new DashboardWindow("Ahmed Mohammed EL Sherbeny").Show();
+            Close();
+
+        }
+
     }
 
     public class UserViewModel

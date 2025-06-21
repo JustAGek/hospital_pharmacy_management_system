@@ -25,24 +25,23 @@
             <GradientStop Color="#42A5F5" Offset="0"/>
             <GradientStop Color="#1E88E5" Offset="1"/>
         </LinearGradientBrush>
-        <Style x:Key="RoundedButton" TargetType="Button">
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="0"/>
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
-                    CornerRadius="20"
-                    SnapsToDevicePixels="True">
+                        CornerRadius="15"
+                        Padding="{TemplateBinding Padding}">
                             <ContentPresenter HorizontalAlignment="Center"
-                                VerticalAlignment="Center"/>
+                                      VerticalAlignment="Center"
+                                      Content="{TemplateBinding Content}" />
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
         <Style x:Key="LoginButtonStyle" TargetType="Button"
-           BasedOn="{StaticResource RoundedButton}">
+           BasedOn="{StaticResource RoundedButtonStyle}">
             <Setter Property="Background" Value="#FFEEEEEE"/>
             <Setter Property="Foreground" Value="#333333"/>
             <Setter Property="FontWeight" Value="Bold"/>

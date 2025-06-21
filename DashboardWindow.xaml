@@ -25,29 +25,27 @@
         <Border Grid.Column="0" Background="{StaticResource SidebarBackground}">
             <StackPanel>
                 <!-- user header -->
-                <Grid x:Name="UserMenuRoot" HorizontalAlignment="Left" Margin="20,20,0,10" VerticalAlignment="Top">
+                <DockPanel Margin="20,20,0,10" LastChildFill="False">
+                    <!-- Avatar -->
                     <Button x:Name="AvatarButton"
-                    Width="36" Height="36"
-                    BorderThickness="0"
-                    Background="Transparent"
-                    ToolTip="{Binding UserFullName}"
-                    Click="AvatarButton_Click"
-                    Cursor="Hand"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Padding="0">
+            Width="36" Height="36"
+            BorderThickness="0"
+            Background="Transparent"
+            ToolTip="{Binding UserFullName}"
+            Click="AvatarButton_Click"
+            Cursor="Hand"
+            Padding="0"
+            DockPanel.Dock="Left">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Grid>
-                                    <!-- Clean circular shape -->
                                     <Ellipse x:Name="EllipseElement" Fill="Green" Width="36" Height="36"/>
-                                    <!-- Centered user icon -->
                                     <TextBlock Text="👤"
-                           Foreground="White"
-                           FontSize="16"
-                           FontWeight="Bold"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"/>
+                               Foreground="White"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
                                 </Grid>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
@@ -58,16 +56,23 @@
                         </Button.Template>
                     </Button>
 
+                    <!-- Username Text -->
                     <TextBlock x:Name="UserNameText"
-                               Text="Full Name"
-                               Foreground="{StaticResource SidebarText}"
-                               FontSize="16" FontWeight="SemiBold"
-                               Margin="50,0,0,0"
-                               VerticalAlignment="Center"/>
+               Text="{Binding user_full_name}"
+               Foreground="{StaticResource SidebarText}"
+               FontSize="16"
+               FontWeight="SemiBold"
+               VerticalAlignment="Center"
+               Margin="10,0,0,0"
+               TextTrimming="CharacterEllipsis"
+               TextWrapping="NoWrap"
+               Width="110"/>
+
+                    <!-- Dropdown Arrow -->
                     <TextBlock Text="▼"
-                               Foreground="{StaticResource SidebarText}"
-                               Margin="132,0,0,0"
-                               VerticalAlignment="Center"/>
+               Foreground="{StaticResource SidebarText}"
+               VerticalAlignment="Center"
+               Margin="5,0,0,0"/>
 
                     <!-- Dropdown Popup -->
                         <Popup x:Name="LogoutPopup"
@@ -91,10 +96,19 @@
                                     HorizontalAlignment="Left"
                                     Padding="5"
                                     Cursor="Hand"/>
-                                </StackPanel>
+
+                                <Button Content="Change Password"
+                                Click="ChangePassword_Click"
+                                Background="Transparent"
+                                Foreground="Black"
+                                BorderBrush="Transparent"
+                                HorizontalAlignment="Left"
+                                Padding="5"
+                                Cursor="Hand"/>
+                            </StackPanel>
                             </Border>
                         </Popup>
-                </Grid>
+                </DockPanel>
 
                 <!-- nav items -->
                 <StackPanel>
@@ -107,7 +121,14 @@
                             <TextBlock Text=" Dashboard" Margin="8,0,0,0"/>
                         </StackPanel>
                     </Button>
-
+                    <Button x:Name="POSBtn"
+                            Style="{StaticResource NavButtonStyle}"
+                            Click="POSButton_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="💵" FontSize="16"/>
+                            <TextBlock Text=" POS" Margin="8,0,0,0"/>
+                        </StackPanel>
+                    </Button>
                     <Button x:Name="ManageUsersBtn"
                             Style="{StaticResource NavButtonStyle}"
                             Click="ManageUsersButton_Click">
@@ -159,6 +180,30 @@
                             <TextBlock Text=" Suppliers" Margin="8,0,0,0"/>
                         </StackPanel>
                     </Button>
+
+                    <Button x:Name="SessionsTabButton"
+                            Style="{StaticResource NavButtonStyle}"
+                            
+                            Visibility="Collapsed">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="16" Height="16" Margin="0,0,8,0"/>
+                                <TextBlock Text="Sessions" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+
+                    <StackPanel DockPanel.Dock="Bottom" Margin="10,100,10,20">
+                        <TextBlock Text="{Binding UserFullName}"
+                                   Foreground="White"
+                                   FontWeight="Bold"
+                                   FontSize="13"
+                                   TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding LoginTimeFormatted}"
+                                   Foreground="#D6D6D6"
+                                   FontSize="12"
+                                   TextWrapping="Wrap"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </Border>

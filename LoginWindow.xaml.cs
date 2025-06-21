@@ -79,6 +79,7 @@ namespace WpfApp1
             Session.UserFullName = fullName;
             Session.UserType = userType.ToLower();
             Session.UserId = userId;
+            Session.LoginTime = DateTime.Now;
 
             // Track login time for pharmacist
             if (userType == "pharmacist")

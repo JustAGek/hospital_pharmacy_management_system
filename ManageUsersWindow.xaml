@@ -5,11 +5,42 @@
         WindowStartupLocation="CenterScreen"
         Background="{StaticResource AppBackground}">
 
+	<Window.Resources>
+		<Style x:Key="RoundedButtonStyle" TargetType="Button">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border Background="{TemplateBinding Background}"
+                                CornerRadius="10"
+                                Padding="{TemplateBinding Padding}">
+							<ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              Content="{TemplateBinding Content}"/>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
+
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+		<Button Content="← Back"
+                Style="{StaticResource RoundedButtonStyle}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="10"
+                Padding="10,5"
+                Background="#95A5A6"
+                Foreground="White"
+                FontWeight="Bold"
+                Click="BackToDashboard_Click"
+                Cursor="Hand"
+                Grid.Column="0"/>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10">
             <Button Content="Add User" Click="AddUser_Click" Margin="0,0,10,0" Padding="10,5" Background="#27AE60" Foreground="White"/>

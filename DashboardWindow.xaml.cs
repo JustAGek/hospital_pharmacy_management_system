@@ -5,28 +5,43 @@ namespace WpfApp1
 {
     public partial class DashboardWindow : Window
     {
-        public string UserFullName { get; set; }
+
+
+        public string UserFullName => $"👤 {Session.UserFullName}";
+        public string user_full_name => $" {Session.UserFullName}";
+        public string LoginTimeFormatted => $"🕒 {Session.LoginTime:HH:mm:ss - dd MMM yyyy}";
         public DashboardWindow(string fullName)
         {
             InitializeComponent();
-            UserFullName = fullName;
+            Session.UserFullName = fullName;
             DataContext = this;
-            ApplyRoleVisibility();
         }
 
         private void ClearSelection()
         {
             DashboardBtn.Tag = null;
+            POSBtn.Tag = null;
             ManageUsersBtn.Tag = null;
             PatientsBtn.Tag = null;
             MedicineBtn.Tag = null;
+            AllergiesBtn.Tag = null;
+            InventoryBtn.Tag = null;
+            SuppliersBtn.Tag = null;
         }
 
         private void DashboardButton_Click(object sender, RoutedEventArgs e)
         {
             ClearSelection();
             DashboardBtn.Tag = "Selected";
-            // refresh dashboard if needed
+            // Optionally refresh dashboard stats/cards here
+        }
+
+        private void POSButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClearSelection();
+            POSBtn.Tag = "Selected";
+            new SalesWindow().Show();
+            Close();
         }
 
         private void ManageUsersButton_Click(object sender, RoutedEventArgs e)
@@ -37,6 +52,8 @@ namespace WpfApp1
                 return;
             }
 
+            ClearSelection();
+            ManageUsersBtn.Tag = "Selected";
             new ManageUsersWindow().Show();
             Close();
         }
@@ -56,6 +73,7 @@ namespace WpfApp1
             new MedicinePage().Show();
             Close();
         }
+
         private void AllergiesButton_Click(object sender, RoutedEventArgs e)
         {
             ClearSelection();
@@ -63,6 +81,7 @@ namespace WpfApp1
             new AllergiesWindow().Show();
             Close();
         }
+
         private void InventoryButton_Click(object sender, RoutedEventArgs e)
         {
             if (Session.UserType.ToLower() != "admin")
@@ -74,6 +93,7 @@ namespace WpfApp1
             new InventoryWindow().Show();
             Close();
         }
+
         private void SuppliersButton_Click(object sender, RoutedEventArgs e)
         {
             if (Session.UserType.ToLower() != "admin")
@@ -85,6 +105,7 @@ namespace WpfApp1
             new SupplierWindow().Show();
             Close();
         }
+
 
         private void AvatarButton_Click(object sender, RoutedEventArgs e)
         {
@@ -107,14 +128,10 @@ namespace WpfApp1
             new LoginWindow().Show();
             Close();
         }
-        private void ApplyRoleVisibility()
+
+        private void ChangePassword_Click(object sender, RoutedEventArgs e)
         {
-            if (Session.UserType == "pharmacist")
-            {
-                ManageUsersBtn.Visibility = Visibility.Collapsed;
-                InventoryBtn.Visibility = Visibility.Collapsed;
-                SuppliersBtn.Visibility = Visibility.Collapsed;
-            }
+            new ChangePasswordWindow().ShowDialog(); // modal
         }
 
     }
