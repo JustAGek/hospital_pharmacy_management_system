@@ -431,7 +431,7 @@ namespace WpfApp1
 
         private void BackToDashboard_Click(object sender, RoutedEventArgs e)
         {
-            new DashboardWindow("Ahmed Mohammed EL Sherbeny").Show();
+            new DashboardWindow(Session.UserFullName).Show();
             Close();
         }
     }

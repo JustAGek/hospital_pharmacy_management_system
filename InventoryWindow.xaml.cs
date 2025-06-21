@@ -221,7 +221,7 @@ namespace WpfApp1
 
         private void BackToDashboard_Click(object sender, RoutedEventArgs e)
         {
-            new DashboardWindow("Your Name").Show();
+            new DashboardWindow(Session.UserFullName).Show();
             Close();
         }
 
