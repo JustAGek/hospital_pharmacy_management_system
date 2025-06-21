@@ -44,7 +44,14 @@
                             <TextBlock Text=" Dashboard" Margin="8,0,0,0"/>
                         </StackPanel>
                     </Button>
-
+                    <Button x:Name="POSBtn"
+                            Style="{StaticResource NavButtonStyle}"
+                            Click="POSButton_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="💵" FontSize="16"/>
+                            <TextBlock Text=" POS" Margin="8,0,0,0"/>
+                        </StackPanel>
+                    </Button>
                     <Button x:Name="ManageUsersBtn"
                             Style="{StaticResource NavButtonStyle}"
                             Click="ManageUsersButton_Click">

@@ -13,23 +13,36 @@ namespace WpfApp1
         private void ClearSelection()
         {
             DashboardBtn.Tag = null;
+            POSBtn.Tag = null;
             ManageUsersBtn.Tag = null;
             PatientsBtn.Tag = null;
             MedicineBtn.Tag = null;
+            AllergiesBtn.Tag = null;
+            InventoryBtn.Tag = null;
+            SuppliersBtn.Tag = null;
         }
 
         private void DashboardButton_Click(object sender, RoutedEventArgs e)
         {
             ClearSelection();
             DashboardBtn.Tag = "Selected";
-            // refresh dashboard if needed
+            // Optionally refresh dashboard stats/cards here
+        }
+
+        private void POSButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClearSelection();
+            POSBtn.Tag = "Selected";
+            new SalesWindow().Show();
+            Close();
         }
 
         private void ManageUsersButton_Click(object sender, RoutedEventArgs e)
         {
             ClearSelection();
             ManageUsersBtn.Tag = "Selected";
-            // open ManageUsersWindow…
+            // new ManageUsersWindow().Show();
+            // Close();
         }
 
         private void PatientsButton_Click(object sender, RoutedEventArgs e)
@@ -47,6 +60,7 @@ namespace WpfApp1
             new MedicinePage().Show();
             Close();
         }
+
         private void AllergiesButton_Click(object sender, RoutedEventArgs e)
         {
             ClearSelection();
@@ -54,6 +68,7 @@ namespace WpfApp1
             new AllergiesWindow().Show();
             Close();
         }
+
         private void InventoryButton_Click(object sender, RoutedEventArgs e)
         {
             ClearSelection();
@@ -61,6 +76,7 @@ namespace WpfApp1
             new InventoryWindow().Show();
             Close();
         }
+
         private void SuppliersButton_Click(object sender, RoutedEventArgs e)
         {
             ClearSelection();
@@ -68,7 +84,5 @@ namespace WpfApp1
             new SupplierWindow().Show();
             Close();
         }
-
-
     }
 }
