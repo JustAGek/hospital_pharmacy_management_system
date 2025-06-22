@@ -80,15 +80,13 @@ namespace WpfApp1
             Session.UserType = userType.ToLower();
             Session.UserId = userId;
             Session.LoginTime = DateTime.Now;
+            using var sessionCmd = conn.CreateCommand();
+            sessionCmd.CommandText = @"INSERT INTO user_sessions(user_id) VALUES(@uid)";
+            sessionCmd.Parameters.AddWithValue("@uid", Session.UserId);
+            sessionCmd.ExecuteNonQuery();
 
-            // Track login time for pharmacist
-            if (userType == "pharmacist")
-            {
-                using var sess = conn.CreateCommand();
-                sess.CommandText = "INSERT INTO user_sessions(user_id, login_time) VALUES(@id, NOW())";
-                sess.Parameters.AddWithValue("@id", userId);
-                sess.ExecuteNonQuery();
-            }
+            Session.SessionId = (int)sessionCmd.LastInsertedId;
+
 
 
             // open dashboard

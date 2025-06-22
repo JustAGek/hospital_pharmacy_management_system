@@ -180,6 +180,15 @@
                             <TextBlock Text=" Suppliers" Margin="8,0,0,0"/>
                         </StackPanel>
                     </Button>
+                    <Button x:Name="IntakeBtn"
+        Style="{StaticResource NavButtonStyle}"
+        Click="IntakeButton_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="📥" FontSize="16"/>
+                            <TextBlock Text=" Intake" Margin="8,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+
 
                     <Button x:Name="SessionsTabButton"
                             Style="{StaticResource NavButtonStyle}"

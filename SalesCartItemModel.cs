@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace WpfApp1
 {
@@ -7,15 +8,27 @@ namespace WpfApp1
         public string Barcode { get; set; } = "";
         public string NameEn { get; set; } = "";
         public string Packaging { get; set; } = "";
-        public int Quantity { get; set; }
-        public decimal UnitPrice { get; set; }
         public string ActiveIngredient { get; set; } = "";
-        public int? StripsPerBox { get; set; }
         public DateTime ExpiryDate { get; set; }
+        public decimal UnitPrice { get; set; }
+
+        private int _quantity = 1;
+        public int Quantity
+        {
+            get => _quantity;
+            set
+            {
+                if (_quantity == value) return;
+                _quantity = value;
+                OnPropertyChanged(nameof(Quantity));
+                OnPropertyChanged(nameof(LineTotal));
+            }
+        }
+
         public decimal LineTotal => UnitPrice * Quantity;
 
         public event PropertyChangedEventHandler? PropertyChanged;
-        public void OnPropertyChanged(string prop) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        private void OnPropertyChanged(string n) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(n));
     }
 }

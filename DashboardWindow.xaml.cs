@@ -26,6 +26,7 @@ namespace WpfApp1
             MedicineBtn.Tag = null;
             AllergiesBtn.Tag = null;
             InventoryBtn.Tag = null;
+            IntakeBtn.Tag = null;
             SuppliersBtn.Tag = null;
         }
 
@@ -57,6 +58,8 @@ namespace WpfApp1
             new ManageUsersWindow().Show();
             Close();
         }
+
+
 
         private void PatientsButton_Click(object sender, RoutedEventArgs e)
         {
@@ -116,18 +119,25 @@ namespace WpfApp1
         {
             using var conn = DbHelper.GetConnection();
             using var cmd = conn.CreateCommand();
-            cmd.CommandText = @"
-            UPDATE user_sessions
-            SET logout_time = NOW()
-            WHERE user_id = (SELECT id FROM users WHERE full_name=@name)
-            AND logout_time IS NULL
-            ORDER BY login_time DESC LIMIT 1";
-            cmd.Parameters.AddWithValue("@name", UserFullName); // Set on login
+            cmd.CommandText = @"UPDATE user_sessions
+                        SET logout_time = NOW()
+                        WHERE session_id = @sid";
+            cmd.Parameters.AddWithValue("@sid", Session.SessionId);
             cmd.ExecuteNonQuery();
 
             new LoginWindow().Show();
             Close();
         }
+
+
+        private void IntakeButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClearSelection();
+            IntakeBtn.Tag = "Selected";
+            new InventoryIntakeWindow().Show();
+            Close();
+        }
+
 
         private void ChangePassword_Click(object sender, RoutedEventArgs e)
         {
