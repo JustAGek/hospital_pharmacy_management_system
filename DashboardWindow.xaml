@@ -188,20 +188,22 @@
                             <TextBlock Text=" Intake" Margin="8,0,0,0"/>
                         </StackPanel>
                     </Button>
-
-
-                    <Button x:Name="SessionsTabButton"
-                            Style="{StaticResource NavButtonStyle}"
-                            
-                            Visibility="Collapsed">
-                        <Button.Content>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Width="16" Height="16" Margin="0,0,8,0"/>
-                                <TextBlock Text="Sessions" />
-                            </StackPanel>
-                        </Button.Content>
+                    <Button x:Name="SalesHistoryBtn"
+        Style="{StaticResource NavButtonStyle}"
+        Click="SalesHistoryButton_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="🧾" FontSize="16"/>
+                            <TextBlock Text=" Sales" Margin="8,0,0,0"/>
+                        </StackPanel>
                     </Button>
-
+                    <Button x:Name="UserSessionsBtn"
+        Style="{StaticResource NavButtonStyle}"
+        Click="UserSessionsButton_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="🕒" FontSize="16"/>
+                            <TextBlock Text=" User Sessions" Margin="8,0,0,0"/>
+                        </StackPanel>
+                    </Button>
                     <StackPanel DockPanel.Dock="Bottom" Margin="10,100,10,20">
                         <TextBlock Text="{Binding UserFullName}"
                                    Foreground="White"
@@ -232,10 +234,18 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
+
                         <TextBlock Text="Medicines" Foreground="White" FontSize="16" FontWeight="SemiBold"/>
                         <TextBlock Grid.Row="1" Text="Report" Foreground="White" Opacity="0.8" FontSize="12"/>
+
                         <TextBlock Grid.Column="1" Text="💼" Foreground="White" FontSize="20" HorizontalAlignment="Right"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="3" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Right"/>
+                        <TextBlock x:Name="MedicinesCountText"
+                                   Grid.Row="1" Grid.Column="1"
+                                   Text="0"
+                                   Foreground="White"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Right"/>
                     </Grid>
                 </Border>
 
@@ -250,10 +260,18 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
+
                         <TextBlock Text="Sales Of Day" Foreground="White" FontSize="16" FontWeight="SemiBold"/>
                         <TextBlock Grid.Row="1" Text="Report" Foreground="White" Opacity="0.8" FontSize="12"/>
+
                         <TextBlock Grid.Column="1" Text="📊" Foreground="White" FontSize="20" HorizontalAlignment="Right"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="3800" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Right"/>
+                        <TextBlock x:Name="SalesOfDayText"
+                                   Grid.Row="1" Grid.Column="1"
+                                   Text="0"
+                                   Foreground="White"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Right"/>
                     </Grid>
                 </Border>
 
@@ -268,10 +286,18 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
+
                         <TextBlock Text="Sales Of Month" Foreground="White" FontSize="16" FontWeight="SemiBold"/>
                         <TextBlock Grid.Row="1" Text="Report" Foreground="White" Opacity="0.8" FontSize="12"/>
+
                         <TextBlock Grid.Column="1" Text="📈" Foreground="White" FontSize="20" HorizontalAlignment="Right"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="5400" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Right"/>
+                        <TextBlock x:Name="SalesOfMonthText"
+                                   Grid.Row="1" Grid.Column="1"
+                                   Text="0"
+                                   Foreground="White"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Right"/>
                     </Grid>
                 </Border>
 
@@ -286,10 +312,18 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
+
                         <TextBlock Text="Stock Shortage" Foreground="White" FontSize="16" FontWeight="SemiBold"/>
                         <TextBlock Grid.Row="1" Text="Report" Foreground="White" Opacity="0.8" FontSize="12"/>
+
                         <TextBlock Grid.Column="1" Text="⚠️" Foreground="White" FontSize="20" HorizontalAlignment="Right"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="2" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Right"/>
+                        <TextBlock x:Name="StockShortageText"
+                                   Grid.Row="1" Grid.Column="1"
+                                   Text="0"
+                                   Foreground="White"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Right"/>
                     </Grid>
                 </Border>
 
@@ -304,10 +338,18 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
+
                         <TextBlock Text="Expired Products" Foreground="White" FontSize="16" FontWeight="SemiBold"/>
                         <TextBlock Grid.Row="1" Text="Report" Foreground="White" Opacity="0.8" FontSize="12"/>
+
                         <TextBlock Grid.Column="1" Text="🚫" Foreground="White" FontSize="20" HorizontalAlignment="Right"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="1" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Right"/>
+                        <TextBlock x:Name="ExpiredProductsText"
+                                   Grid.Row="1" Grid.Column="1"
+                                   Text="0"
+                                   Foreground="White"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Right"/>
                     </Grid>
                 </Border>
 
@@ -322,10 +364,18 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
+
                         <TextBlock Text="Near Expiry" Foreground="White" FontSize="16" FontWeight="SemiBold"/>
                         <TextBlock Grid.Row="1" Text="Report" Foreground="White" Opacity="0.8" FontSize="12"/>
+
                         <TextBlock Grid.Column="1" Text="⚡" Foreground="White" FontSize="20" HorizontalAlignment="Right"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="1" Foreground="White" FontSize="24" FontWeight="Bold" HorizontalAlignment="Right"/>
+                        <TextBlock x:Name="NearExpiryText"
+                                   Grid.Row="1" Grid.Column="1"
+                                   Text="0"
+                                   Foreground="White"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Right"/>
                     </Grid>
                 </Border>
             </UniformGrid>

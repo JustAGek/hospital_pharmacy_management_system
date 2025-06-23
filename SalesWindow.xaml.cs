@@ -39,6 +39,73 @@ namespace WpfApp1
             ViewModel.CartItems.CollectionChanged += (_, __) => UpdateStockView();
         }
 
+        // Overload for "Edit" path
+        // in SalesWindow.xaml.cs
+        public SalesWindow(int saleId, bool isEdit) : this()
+        {
+            LoadSaleIntoCart(saleId);
+        }
+
+
+
+        private void LoadSaleIntoCart(int saleId)
+        {
+            using var conn = DbHelper.GetConnection();
+
+            using (var cmd = conn.CreateCommand())
+            {
+                cmd.CommandText = @"
+SELECT patient_id, discount, amount_paid
+  FROM sales
+ WHERE sale_id = @i";
+                cmd.Parameters.AddWithValue("@i", saleId);
+
+                using var r = cmd.ExecuteReader();
+                if (r.Read())
+                {
+                    int? pid = r.IsDBNull(0) ? (int?)null : r.GetInt32(0);
+                    ViewModel.SelectedPatient = pid.HasValue
+                        ? ViewModel.PatientsList.FirstOrDefault(p => p.Id == pid.Value)
+                        : null;
+
+                    ViewModel.Discount = r.GetDecimal("discount");
+                    ViewModel.AmountPaid = r.GetDecimal("amount_paid");
+                }
+            }
+
+            using (var cmd = conn.CreateCommand())
+            {
+                cmd.CommandText = @"
+SELECT si.barcode,
+       pt.name   AS packaging,
+       si.quantity,
+       si.unit_price
+  FROM sale_items si
+  JOIN packaging_types pt
+    ON pt.id = si.packaging_type_id
+ WHERE si.sale_id = @i";
+                cmd.Parameters.AddWithValue("@i", saleId);
+
+                using var r = cmd.ExecuteReader();
+                while (r.Read())
+                {
+                    ViewModel.CartItems.Add(new SalesCartItemModel
+                    {
+                        Barcode = r.GetString("barcode"),
+                        Packaging = r.GetString("packaging"),
+                        Quantity = r.GetInt32("quantity"),
+                        UnitPrice = r.GetDecimal("unit_price"),
+                        NameEn = ViewModel.FilteredProducts.First(m => m.Barcode == r.GetString("barcode")).NameEn,
+                        ExpiryDate = GetNearestExpiry(r.GetString("barcode"), r.GetString("packaging")) ?? DateTime.Today
+                    });
+                }
+            }
+
+            UpdateStockView();
+        }
+
+
+
         #region Data‑loading helpers
         private void LoadPatients()
         {
